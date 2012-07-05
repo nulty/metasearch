@@ -1,4 +1,16 @@
 Metasearch::Application.routes.draw do
+  
+  
+	controller :pages do
+	  #match "pages#index" => "pages#results", :as => :results
+	  #get "pages/cluster"
+	  #get "cluster" => :cluster
+	  post "results" => :results
+	  get "pages/index"
+	   
+  	end
+  	
+  	
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +60,7 @@ Metasearch::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => "pages#index"
 
   # See how all your routes lay out with "rake routes"
 

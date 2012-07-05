@@ -1,0 +1,11 @@
+<h1>MetaSearch</h1>
+
+<%= form_tag(:results) do %>
+	<%= text_field_tag 'query', nil, :placeholder => 'Search...'%>
+	<%= button_tag "Go!", :disable_with => "Please wait..."%>
+	<%= radio_button_tag 'searchType', 'Seperate'%>
+	<%= label_tag 'Seperate'%>
+	<%= radio_button_tag 'searchType', 'Aggregated'%>
+	<%= label_tag 'Aggregated'%>
+<% end %>
+
