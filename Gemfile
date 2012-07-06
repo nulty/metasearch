@@ -7,6 +7,7 @@ gem 'rails', '3.2.6'
 
 gem "oj", "~> 1.2.12"
 
+gem 'sanitize-rails'
 gem 'kaminari' 
 gem 'sqlite3'
 gem 'execjs'

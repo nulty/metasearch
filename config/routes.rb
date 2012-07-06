@@ -1,6 +1,8 @@
 Metasearch::Application.routes.draw do
   
   
+  
+
   get "bing/results"
 
 	controller :pages do
@@ -18,6 +20,11 @@ Metasearch::Application.routes.draw do
 		match '/results' => 'bing#results'
 	end
 
+	controller :blekko do
+		get "blekko/results"
+		post 'blekko#results' => :results
+		match '/blekko_results' => 'blekko#results'
+	end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -2,10 +2,10 @@ class BingController < ApplicationController
 	
 	def results
 	
-		require "base64"
-		require 'net/http'
-		require 'erb'
-		require 'oj'
+		require "base64"		# used to authenticate API
+		require 'net/http'	# used to retrieve search results
+		require 'erb'				# used to URL encode the query string 
+		require 'oj'				# used to convert json to ruby hash
 		#require 'fileutils'
 
 		#query = ERB::Util.url_encode(params[:query])

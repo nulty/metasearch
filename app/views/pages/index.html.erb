@@ -2,7 +2,7 @@
 
 <%= form_tag(:results) do %>
 	<%= text_field_tag 'query', nil, :placeholder => 'Search...'%>
-	<%= button_tag "Go!", :disable_with => "Please wait..."%>
+	<%= button_tag "Go!", 'data-disable-with' => "Please wait..."%>
 	<%= radio_button_tag 'searchType', 'Seperate'%>
 	<%= label_tag 'Seperate'%>
 	<%= radio_button_tag 'searchType', 'Aggregated'%>
@@ -11,3 +11,4 @@
 
 
 <%= link_to	'bing/results', results_path %>
+<%= link_to	'blekko_results', '/blekko_results' %>
