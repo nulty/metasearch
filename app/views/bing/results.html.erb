@@ -1,0 +1,17 @@
+<h1>Bing</h1>
+
+
+<div>
+	<%= paginate @items %>
+	<table>
+	<% @items.each do |item| %>
+		<tr>
+			<td>
+				<span class="resTitle"><%= item["Title"] %></span><br />
+				<span class="resDesc"><%= item["Description"] %><br /></span>
+				<span class="resUrl"><%= link_to item["Url"], item["Url"] %></span>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

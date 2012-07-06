@@ -1,16 +1,24 @@
 Metasearch::Application.routes.draw do
   
   
+  get "bing/results"
+
 	controller :pages do
 	  #match "pages#index" => "pages#results", :as => :results
 	  #get "pages/cluster"
-	  #get "cluster" => :cluster
-	  post "results" => :results
+	  get "pages#cluster" => :cluster 
+	  post "results" => 'bing#results'
+	  #get "bing/results" => :results
 	  get "pages/index"
-	   
-  	end
+	  #match 'pages#index' => 'bing#results', :as => :results
+  end
   	
-  	
+	controller :bing do
+		post 'bing#results' => :results
+		match '/results' => 'bing#results'
+	end
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

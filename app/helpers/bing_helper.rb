@@ -1,0 +1,2 @@
+module BingHelper
+end
