@@ -3,27 +3,36 @@ Metasearch::Application.routes.draw do
   
   
 
-  get "bing/results"
+  
+
+  #get "bing/results"
 
 	controller :pages do
-	  #match "pages#index" => "pages#results", :as => :results
-	  #get "pages/cluster"
-	  get "pages#cluster" => :cluster 
-	  post "results" => 'bing#results'
-	  #get "bing/results" => :results
+	  get "pages/cluster" => :cluster, :as => :cluster
+	  #match "pages#search" => 'pages#search', :as => :search
+	  post "/pages" => :search
 	  get "pages/index"
-	  #match 'pages#index' => 'bing#results', :as => :results
+	  match "pages#search" => "bing#results"
   end
   	
 	controller :bing do
-		post 'bing#results' => :results
-		match '/results' => 'bing#results'
+		#get '/bing' #=> 'bing#results', :as => :bing
+		#match '/bing' => redirect("/bing")
+		get '/bing' => 'bing#results'#:results, :as => :bing
+		post '/bingresults' => 'bing#results', :as => :bing_results
+		#match '/bing' => redirect("/bing")
 	end
 
 	controller :blekko do
 		get "blekko/results"
-		post 'blekko#results' => :results
-		match '/blekko_results' => 'blekko#results'
+		#post 'blekko#results' => :results
+		match '/blekko' => 'blekko#results', :as => :blekko
+	end
+	
+	controller :entireweb do
+		get "entireweb/results"
+		#post 'pages#search' => :results
+		match '/entireweb' => 'entireweb#results', :as => :entireweb
 	end
 
   # The priority is based upon order of creation:

@@ -17,7 +17,13 @@ class PagesController < ApplicationController
   	  
   end
   
-  
+  def search
+  	@query = url_encode(params['query'])
+  	
+  	if params['bing'] = true
+  		redirect_to '/bing'
+  	end
+  end
   
   
   

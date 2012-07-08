@@ -7,11 +7,25 @@ gem 'rails', '3.2.6'
 
 gem "oj", "~> 1.2.12"
 
-gem 'sanitize-rails'
-gem 'kaminari' 
+gem 'sanitize-rails'																			# Removes HTML
+gem 'kaminari'																						# Pagination gem 
 gem 'sqlite3'
-gem 'execjs'
-gem 'therubyracer'
+
+
+group :development, :test do
+  gem 'rspec-rails'																				# Test framework
+  gem 'factory_girl_rails'																# Factory fixtures
+end
+
+group :test do
+  gem 'faker'																							# fakes emails.etc
+  gem 'capybara'																					# simulate users
+  gem 'guard-rspec'																				# continuous testing
+  gem 'launchy'																						# browser launcher
+end
+
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,11 +35,19 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
+  
+  gem 'execjs'
+  gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
+
+
+
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

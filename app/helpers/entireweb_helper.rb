@@ -1,0 +1,2 @@
+module EntirewebHelper
+end
