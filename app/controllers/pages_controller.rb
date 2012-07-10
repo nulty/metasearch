@@ -19,6 +19,7 @@ class PagesController < ApplicationController
   
   def results
   	
+  	
   	@query = query_preprocesser(params[:query])
 
   	if params[:bing]
