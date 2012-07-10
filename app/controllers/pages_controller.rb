@@ -1,30 +1,42 @@
 class PagesController < ApplicationController
-  require 'erb'
-  
-  include ERB::Util
+	include PagesHelper
 	
 	def index
-  	 @query = url_encode(params['query'])
   	 
-  	 #respond_to do |format|
-  	 #	 if params['query']
-  	 #		format.html { redirect_to('/pages/cluster', :notice => "Sorry, that Race has been suspended")  }
-  	 #	end
-  	 #end
+  ############################################################################	 
+	#	respond_to do |format|
+	#		if params[:query].empty?
+	#			format.html { redirect_to results_path(@bing, @blekko, @entireweb)}
+	#		else
+	#			format.html { redirect_to(:back, :notice => "query cannot be blank")}
+	#		end
+	#		
+	############################################################################
   end
 
-  def cluster
-  	  
+  def cluster  
   end
   
-  def search
-  	@query = url_encode(params['query'])
+  def results
   	
-  	if params['bing'] = true
-  		redirect_to '/bing'
+  	@query = query_preprocesser(params[:query])
+
+  	if params[:bing]
+  		@bing = bing_search(@query)
   	end
-  end
-  
-  
-  
+
+		if params[:entireweb]
+			@entireweb = entireweb_search(@query)
+		end
+
+		if params[:blekko]
+			@blekko = blekko_search(@query)
+		end
+	
+		respond_to do |format|
+			format.html #{ redirect_to results_path(@bing, @blekko, @entireweb)}
+		end
+  	
+	end
 end
+  

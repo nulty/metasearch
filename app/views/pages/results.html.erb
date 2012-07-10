@@ -1,4 +1,21 @@
-<h1>Pages#results</h1>
-<p>Find me in app/views/pages/results.html.erb</p>
-<p><%= @query %></p>
+<h1>Web Search Results</h1>
+<p>You chose </p>
+
+	<% if @blekko %>
+		<div id="blekkoDiv" class="result_div">
+			<%= render 'pages/blekko'%>
+		</div>
+	<% end %>
+	
+	<% if @entireweb %>
+		<div id="entireDiv" class="result_div">
+			<%= render 'pages/entireweb'%>
+		</div>
+	<% end %>
+	
+	<% if @bing %>
+		<div id="bingDiv" class="result_div">
+			<%= render 'bing'%>
+		</div>
+	<% end %>
 

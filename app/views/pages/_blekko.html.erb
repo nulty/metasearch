@@ -1,0 +1,16 @@
+<h3>Blekko Results</h3>
+
+	<%= paginate @blekko %>
+	
+	<table>
+	<% @blekko.each do |item| %>
+		<tr>
+			<td>
+				<span class="resTitle"><%= item["Title"] %></span><br />
+				<span class="resDesc"><%= truncate(item["Description"], :length => 200) %></span><br />
+				<span class="resUrl"><%=link_to truncate(item["Url"]), item["Url"] %></span>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+

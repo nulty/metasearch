@@ -2,9 +2,77 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/*body {
-	width: 500%;
+$result_width: 360px;
 	
-}*/
+.result_div {
+	
+	/*float: left;*/
+	margin: 0 20px;
 	
 	
+	
+			table{
+				background-color: #fff;
+				width: $result_width;
+				
+					tr{
+					
+						td {
+							
+						height: 8em;
+							background-color: #ccc;
+							padding: 1%;
+								.resTitle {
+						
+									font-size: 1.2em;
+									font-weight: bold;
+								
+								}
+								
+								.resDesc {
+								
+									font-size: 0.8em;
+								
+								}
+						}	
+					}
+			}
+
+/*
+			$result_width: 360px;
+	
+.result_div {
+	
+	float: left;
+	margin: 0 20px;
+	
+	
+	
+			table{
+				background-color: #fff;
+				width: $result_width;
+				
+					tr{
+					
+						td {
+							
+						height: 150px;
+							background-color: #ccc;
+							padding: 1%;
+								.resTitle {
+						
+									font-size: 1.2em;
+									font-weight: bold;
+								
+								}
+								
+								.resDesc {
+								
+									font-size: 0.8em;
+								
+								}
+						}	
+					}
+			}
+*/
+}

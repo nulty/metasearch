@@ -8,11 +8,11 @@ Metasearch::Application.routes.draw do
   #get "bing/results"
 
 	controller :pages do
-	  get "pages/cluster" => :cluster, :as => :cluster
-	  #match "pages#search" => 'pages#search', :as => :search
-	  post "/pages" => :search
-	  get "pages/index"
-	  match "pages#search" => "bing#results"
+	  get "/pages" => "pages#index"
+		get "pages/cluster" => :cluster, :as => :cluster
+		get '/results' => "pages#results"
+	  post "/results" => "pages#results"
+	  
   end
   	
 	controller :bing do
