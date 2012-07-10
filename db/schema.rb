@@ -11,6 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120710135604) do
+
+  create_table "results", :force => true do |t|
+    t.text     "session_id"
+    t.text     "db_name"
+    t.text     "query"
+    t.integer  "query_rank"
+    t.text     "title"
+    t.text     "description"
+    t.text     "url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Session:</b>
+  <%= @result.session_id %>
+</p>
+
+<p>
+  <b>Db name:</b>
+  <%= @result.db_name %>
+</p>
+
+<p>
+  <b>Query:</b>
+  <%= @result.query %>
+</p>
+
+<p>
+  <b>Query rank:</b>
+  <%= @result.query_rank %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @result.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @result.description %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @result.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

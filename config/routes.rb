@@ -5,6 +5,8 @@ Metasearch::Application.routes.draw do
 
   
 
+  resources :results
+
   #get "bing/results"
 
 	controller :pages do
