@@ -19,11 +19,9 @@ end
 
 describe Pages do
   it_should_behave_like "ActiveModel"
-end
 
-describe "Valid Query" do
-	it "should be an invalid query" do
-		Factory.
+
+
 end
 #describe Pages do
 #  pending "add some examples to (or delete) #{__FILE__}"

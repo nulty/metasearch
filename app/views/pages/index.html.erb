@@ -1,6 +1,6 @@
 <h1>MetaSearch</h1>
 
-<%= form_tag(:results) do %>
+<%= form_tag(store_url) do %>
 	<%= text_field_tag 'query', nil, :placeholder => 'Search...'%>
 	<%= button_tag "Go!", 'data-disable-with' => "Please wait..."%>
 	<div>
@@ -17,10 +17,13 @@
 	<%= check_box_tag 'bing'%>
 	<%= label_tag 'blekko', 'Blekko' %>
 	<%= check_box_tag 'blekko'%>
-	
+	<%= hidden_field_tag 'session_id', @sessid%>
 <% end %>
 
 <%= session.inspect%>
+
+<%= link_to 'RESULTS', results_path%>
+<%= params.inspect%>
 
 <%= link_to	'Bing results', bing_path %>
 <%= link_to	'Blekko results', blekko_path %>

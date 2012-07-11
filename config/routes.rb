@@ -1,20 +1,17 @@
 Metasearch::Application.routes.draw do
   
-  
-  
 
-  
+  post "/pages" => "results#store", :as => :store
 
   resources :results
 
-  #get "bing/results"
 
 	controller :pages do
-	  get "/pages" => "pages#index"
+	  post '/pages' => 'results#store', :as => :store
+		get "/pages" => "pages#index"
 		get "pages/cluster" => :cluster, :as => :cluster
-		get '/results' => "pages#results"
-	  post "/results" => "pages#results"
-	  
+		#match '/pages' => 'pages#results'
+		
   end
   	
 	controller :bing do

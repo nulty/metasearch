@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710135604) do
+ActiveRecord::Schema.define(:version => 20120710165837) do
 
   create_table "results", :force => true do |t|
     t.text     "session_id"
@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(:version => 20120710135604) do
     t.text     "title"
     t.text     "description"
     t.text     "url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "query_number"
   end
 
 end

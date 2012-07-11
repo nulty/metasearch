@@ -1,5 +1,5 @@
 class Pages
-	attr_accessible :query
+	#attr_accessible :query
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
