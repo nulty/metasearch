@@ -10,7 +10,7 @@ Metasearch::Application.routes.draw do
 	  post '/pages' => 'results#store', :as => :store
 		get "/pages" => "pages#index"
 		get "pages/cluster" => :cluster, :as => :cluster
-		#match '/pages' => 'pages#results'
+		get "/searchresults" => "pages#results", :as => :searchresults#match '/pages' => 'pages#results'
 		
   end
   	

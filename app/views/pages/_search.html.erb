@@ -1,0 +1,37 @@
+<%= form_tag(store_url) do %>
+	<%= text_field_tag 'query', nil, :placeholder => 'Search...'%>
+	<%= button_tag "Go!", 'data-disable-with' => "Please wait..."%>
+	<div>
+		<%= label_tag 'Seperate'%>
+		<%= radio_button_tag 'searchType', 'Seperate', true%>
+		
+		<%= label_tag 'Aggregated'%>
+		<%= radio_button_tag 'searchType', 'Aggregated'%>
+	</div>
+	
+	<%= label_tag 'entireweb', 'EntireWeb' %>
+	
+	<% if params[:entireweb].nil? %>
+		<%= check_box_tag 'entireweb', 'Entireweb', false  %>
+	<% else %>
+		<%= check_box_tag 'entireweb', 'Entireweb', true %>
+	<% end %>
+	
+	<%= label_tag 'bing', 'Bing' %>
+	
+	<% if params[:bing].nil? %>
+		<%= check_box_tag 'bing', 'Bing', false  %>
+	<% else %>
+		<%= check_box_tag 'bing', 'Bing', true %>
+	<% end %>
+	
+	<%= label_tag 'blekko', 'Blekko' %>
+	
+	<% if params[:blekko].nil? %>
+		<%= check_box_tag 'blekko', 'Blekko', false  %>
+	<% else %>
+		<%= check_box_tag 'blekko', 'Blekko', true %>
+	<% end %>
+<% end %>
+	
+

@@ -92,8 +92,8 @@ module ResultsHelper
 		# cycle through the results transfering only the parts we need into the new datastructure
 		array.each do |hash|
 			resHash[:results] << Hash.new
-			resHash[:results][i][:title] = CGI.unescapeHTML(Sanitize.clean(hash["Title"]))
-			resHash[:results][i][:description] = CGI.unescapeHTML(Sanitize.clean(hash["Description"]))
+			resHash[:results][i][:title] = hash["Title"].nil? ? "--No Title Available--" : hash["Title"]
+			resHash[:results][i][:description] = hash["Description"].nil? ? "--No Description Available--" : hash["Description"]
 			resHash[:results][i][:url] = hash["Url"]
 			resHash[:results][i][:rank] = i+1
 			i+=1
@@ -144,8 +144,8 @@ module ResultsHelper
 		# cycle through the results transfering only the parts we need into the new datastructure
 		array.each do |hash|
 			resHash[:results] << Hash.new
-			resHash[:results][i][:title] = CGI.unescapeHTML(Sanitize.clean(hash["url_title"]))
-			resHash[:results][i][:description] = CGI.unescapeHTML(Sanitize.clean(hash["snippet"]))
+			resHash[:results][i][:title] = CGI.unescapeHTML(Sanitize.clean(hash["url_title"].nil? ? "--No Title Available--" : hash["url_title"]))
+			resHash[:results][i][:description] = CGI.unescapeHTML(Sanitize.clean(hash["snippet"].nil? ? "--No Description Available--" : hash["snippet"] ))
 			resHash[:results][i][:url] = hash["url"]
 			resHash[:results][i][:rank] = i+1
 			i+=1
@@ -200,8 +200,8 @@ module ResultsHelper
 		# cycle through the results transfering only the parts we need into the new datastructure
 		array.each do |hash|
 			resHash[:results] << Hash.new
-			resHash[:results][i][:title] = hash["title"]
-			resHash[:results][i][:description] = hash["snippet"]
+			resHash[:results][i][:title] = hash["title"].nil? ? "--No Title Available--" : hash["title"]
+			resHash[:results][i][:description] = hash["snippet"].nil? ? "--No Description Available--" : hash["snippet"]
 			resHash[:results][i][:url] = hash["url"]
 			resHash[:results][i][:rank] = i+1
 			i+=1

@@ -1,0 +1,39 @@
+<span  class="logo"><h1>MeatSearch</h1></span>
+
+<%= form_tag(store_url) do %>
+	<%= text_field_tag 'query', nil, :placeholder => 'Search...', :class => 'searchField round'%>
+	<span class="buttonBox"><%= button_tag "Search", 'data-disable-with' => "Please wait...", :class => 'searchButton'%></span>
+	<div>
+		<%= label_tag 'Seperate' %>
+		<%= radio_button_tag 'searchType', 'Seperate', true%>
+		
+		<%= label_tag 'Aggregated'%>
+		<%= radio_button_tag 'searchType', 'Aggregated'%>
+	</div>
+	
+	<%= label_tag 'entireweb', 'EntireWeb' %>
+	
+	<% if params[:entireweb].nil? %>
+		<%= check_box_tag 'entireweb', 'Entireweb', false, :class => 'checkBox'  %>
+	<% else %>
+		<%= check_box_tag 'entireweb', 'Entireweb', true, :class => 'checkBox' %>
+	<% end %>
+	
+	<%= label_tag 'bing', 'Bing' %>
+	
+	<% if params[:bing].nil? %>
+		<%= check_box_tag 'bing', 'Bing', false, :class => 'checkBox'  %>
+	<% else %>
+		<%= check_box_tag 'bing', 'Bing', true, :class => 'checkBox' %>
+	<% end %>
+	
+	<%= label_tag 'blekko', 'Blekko' %>
+	
+	<% if params[:blekko].nil? %>
+		<%= check_box_tag 'blekko', 'Blekko', false, :class => 'checkBox'  %>
+	<% else %>
+		<%= check_box_tag 'blekko', 'Blekko', true, :class => 'checkBox' %>
+	<% end %>
+<% end %>
+	
+

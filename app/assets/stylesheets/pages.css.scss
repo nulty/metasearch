@@ -2,20 +2,112 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
- #wrapper {
- 	 background-color: red;
- 	 margin-left: 10%;
- 	 margin-right: 10%;
+*{ margin:0; padding:0;}
+body{ font:100% normal Arial, Helvetica, sans-serif; background:#161712;}
+form,input,select,textarea{margin:0; padding:0; color:#000;}
+h1 {font-size: 0px;}
 
- 	 
- }
+@font-face
+{
+font-family: LogoFont;
+src: url('Ubuntu-L.ttf'),
+     url('Ubuntu-L.eot'); /* IE9+ */
+}
+
+body {
+
+	 height: 300%;
+ 	 min-height: 300%;
+
+}
+#wrapper {
+	background-color: red;
+	margin-left: 10%;
+	margin-right: 10%;
+
+}
+
+.mainSearchDiv {
+
+	width: 40%;
+	background-color: #def;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5em 10em;
+	
+	
+	span.logo {
+		
+		margin-left: auto;
+		margin-right: auto;		
+		margin-top: auto;
+		margin-bottom: 2em;
+		display:block;
+		width: 20em;
+		text-align: center;
+		
+		h1 {
+		
+		width: auto;
+		display: inline;
+		font-family: LogoFont;
+		font-size: 5em;
+	}
+		
+	}
+	
+	
+	.searchBox {
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		
+		
+	
+	}
+	.searchField {
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		margin-bottom: 1em;
+		display: block;
+		padding: 5px;
+		width: 20em;
+		background-color: #fee;
+		font-size: 2em;
+		border: solid grey 1px;
+	}
+	
+	.checkBox {
+	
+		font-size: 1.2em;
+		
+	
+	}
+	
+	.searchButton {
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		width: 8em;
+		padding: 0.5em;
+		font-size: 1.4em;
+		cursor: pointer;
+	}
+}
+
+.round	{
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
  
 $result_width: 360px;
 	
 .result_div {
 	
-	/*float: left;*/
-	margin: 0 20px;
+	float: left;
+	margin: 0 15px;
 	
 	
 	
@@ -27,18 +119,22 @@ $result_width: 360px;
 					
 						td {
 							
-						height: 8em;
+						height: 9em;
 							background-color: #ccc;
-							padding: 1%;
+							padding: 3%;
+							max-width: $result_width;
+							overflow: auto;
 								.resTitle {
 						
+									height: 20%;
 									font-size: 1.2em;
-									font-weight: bold;
+									
 								
 								}
 								
 								.resDesc {
-								
+									
+									height: 50%;
 									font-size: 0.8em;
 								
 								}
@@ -46,41 +142,10 @@ $result_width: 360px;
 					}
 			}
 
-/*
-			$result_width: 360px;
-	
-.result_div {
-	
-	float: left;
-	margin: 0 20px;
-	
-	
-	
-			table{
-				background-color: #fff;
-				width: $result_width;
-				
-					tr{
-					
-						td {
-							
-						height: 150px;
-							background-color: #ccc;
-							padding: 1%;
-								.resTitle {
-						
-									font-size: 1.2em;
-									font-weight: bold;
-								
-								}
-								
-								.resDesc {
-								
-									font-size: 0.8em;
-								
-								}
-						}	
-					}
-			}
-*/
 }
+
+ #footer {
+ width: 800px;
+ clear: left;
+ 
+ }

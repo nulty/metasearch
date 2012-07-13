@@ -1,4 +1,7 @@
 class ResultsController < ApplicationController
+
+	require 'activerecord-import'
+	#require 'activerecord-import'
 	
 	include ResultsHelper
 	
@@ -86,55 +89,69 @@ class ResultsController < ApplicationController
     end
   end
   
-   def store
+  def store
    	 
-      query = query_preprocesser(params[:query]) # this is in a helper
-      
-      sessionid = request.session[:session_id]
-          
-      #resArray = [[{:engine => "bing, :results => [{:Description => "abc", :Title => "def"}, {:Description => "ghi", :Title => "jkl"}]}, {etc},{etc} ],[{:eng...}]]
-           
-      bing_p 		= params[:bing]
-      entire_p	= params[:entireweb]
-      blekko_p	= params[:blekko]
-      
-      resArray = getResults(bing_p, entire_p, blekko_p, query) # Also a helper method returning an array of up to 3 arrays
-      
-      resArray.each do |engine|
-      	unless engine.nil?
-					db_name = engine[:engine]
-					Result.transaction do
-					engine[:results].each do |result|
-						if result[:title].empty?
-							result[:title] = result[:description][0..15]
-						end
+   	# id query count is not set in session variable set it to 1
+		request.session[:q_num] ||= 1
+		
+		# put session variables into local variables
+		query_number = request.session[:q_num]
+		sessionid = request.session[:session_id]
+		
+		# parse the query by encoding it for URL
+		query = query_preprocesser(params[:query]) # this is in a helper
+				
+		#resArray = [[{:engine => "bing, :results => [{:Description => "abc", :Title => "def"}, {:Description => "ghi", :Title => "jkl"}]}, {etc},{etc} ],[{:eng...}]]
+				 
+		# localise the search engine parameters
+		bing_p 		= params[:bing]
+		entire_p	= params[:entireweb]
+		blekko_p	= params[:blekko]
+		
+		# method for collecting results of search from multiple engines - In ResultsHelper
+		resArray = getResults(bing_p, entire_p, blekko_p, query) # Also a helper method returning an array of up to 3 arrays
+		
+		#results = []
+		
+		resArray.each do |engine|
+			unless engine.nil?
+				db_name = engine[:engine]
+				Result.transaction do
+				engine[:results].each do |result|
+					if result[:title].empty?
+						result[:title] = result[:description][0..15]
+					end
+					if result[:description].empty?
+						result[:description] = result[:title]
+					end
+					
+					res = Result.new(
+						:session_id => sessionid, 
+						:db_name => db_name,
+						:query_number => query_number,
+						:query => query,
+						:query_rank => result[:rank],
+						:description => result[:description],
+						:title => result[:title],
+						:url => result[:url] )
 						
-							res = Result.new(
-							:session_id => sessionid, 
-							:db_name => db_name,
-							:query_number => 1,
-							:query => query,
-							:query_rank => result[:rank],
-							:description => result[:description],
-							:title => result[:title],
-							:url => result[:url] )
-							
-							res.save!
-						end
+					res.save!
 					end
 				end
-      end
-  	
-  	#res.each do |res|
-  	#	res.save
-  	#end
-  	#Result.new(:session_id => params[:session_id], :db_name => "Bing", :query => "Whats the story", :query_rank => 1, :title => "The Title", :description => "descript", :url => "www.google.ie",:query_number => 1)
-  	
-  		#respond_to do |format|
-			#	format.html { redirect_to pages_path }
-			#	format.json { head :no_content }
-			#end
-    end
+			end
+		end
+		
+		# method available to ActiveRecord-import
+		#Result.import results
+		
+		# increase the search count for the session
+		request.session[:q_num]+=1
+			
+		respond_to do |format|
+			format.html { redirect_to searchresults_path }
+				format.json { head :no_content }
+			end
+		end
 
   
 end

@@ -1,30 +1,3 @@
-<h1>MetaSearch</h1>
-
-<%= form_tag(store_url) do %>
-	<%= text_field_tag 'query', nil, :placeholder => 'Search...'%>
-	<%= button_tag "Go!", 'data-disable-with' => "Please wait..."%>
-	<div>
-		<%= label_tag 'Seperate'%>
-		<%= radio_button_tag 'searchType', 'Seperate', true%>
-		
-		<%= label_tag 'Aggregated'%>
-		<%= radio_button_tag 'searchType', 'Aggregated'%>
-	</div>
-	
-	<%= label_tag 'entireweb', 'EntireWeb' %>
-	<%= check_box_tag 'entireweb'%>
-	<%= label_tag 'bing', 'Bing' %>
-	<%= check_box_tag 'bing'%>
-	<%= label_tag 'blekko', 'Blekko' %>
-	<%= check_box_tag 'blekko'%>
-	<%= hidden_field_tag 'session_id', @sessid%>
-<% end %>
-
-<%= session.inspect%>
-
-<%= link_to 'RESULTS', results_path%>
-<%= params.inspect%>
-
-<%= link_to	'Bing results', bing_path %>
-<%= link_to	'Blekko results', blekko_path %>
-<%= link_to	'Entireweb results', entireweb_path %>
+<div class="mainSearchDiv round">
+<%= render 'search_main'%>
+</div>

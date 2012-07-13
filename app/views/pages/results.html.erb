@@ -1,21 +1,23 @@
 <h1>Web Search Results</h1>
 <p>You chose </p>
 
+<%= render 'search'%>
+
 	<% if @blekko %>
 		<div id="blekkoDiv" class="result_div">
-			<%= render 'pages/blekko'%>
+			<%= render 'blekko.html.erb'%>
 		</div>
 	<% end %>
 	
 	<% if @entireweb %>
 		<div id="entireDiv" class="result_div">
-			<%= render 'pages/entireweb'%>
+			<%= render 'entireweb.html.erb'%>
 		</div>
 	<% end %>
 	
 	<% if @bing %>
 		<div id="bingDiv" class="result_div">
-			<%= render 'bing'%>
+			<%= render 'bing.html.erb'%>
 		</div>
 	<% end %>
 
