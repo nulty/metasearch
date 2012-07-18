@@ -1,6 +1,11 @@
 Metasearch::Application.routes.draw do
   
 
+  resources :googles
+
+  get "/googlesearch" => "googles#search", :as => :googlestore
+  match "/googlesearch" => "googles#store", :via => [:get, :post], :as => :googlestore
+  
   post "/pages" => "results#store", :as => :store
 
   resources :results

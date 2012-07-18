@@ -1,14 +1,12 @@
 class ResultsController < ApplicationController
 
-	require 'activerecord-import'
-	#require 'activerecord-import'
-	
 	include ResultsHelper
+	include ApplicationHelper
 	
   # GET /results
   # GET /results.json
   def index
-    @results = Result.all
+    @results = Result.page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -129,7 +127,7 @@ class ResultsController < ApplicationController
 						:session_id => sessionid, 
 						:db_name => db_name,
 						:query_number => query_number,
-						:query => query,
+						:query => params[:query],
 						:query_rank => result[:rank],
 						:description => result[:description],
 						:title => result[:title],

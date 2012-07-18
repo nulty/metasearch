@@ -1,0 +1,10 @@
+<span  class="logo"><h1>GoogleSearch</h1></span>
+
+<%= form_tag(googlestore_url) do %>
+	<%= text_field_tag 'query', nil, :placeholder => 'Search...', :class => 'searchField round'%>
+	<span class="buttonBox"><%= button_tag "Search", 'data-disable-with' => "Please wait...", :class => 'searchButton'%></span>
+
+	
+<% end %>
+	
+

@@ -10,7 +10,8 @@ gem "oj", "~> 1.2.12"
 gem 'sanitize-rails'																			# Removes HTML
 gem 'kaminari'																						# Pagination gem 
 gem 'sqlite3'
-gem 'activerecord-import', ">= 0.2.0"
+#gem 'activerecord-import', ">= 0.2.0"
+gem 'tf_idf'
 
 group :development, :test do
   gem 'rspec-rails'																				# Test framework

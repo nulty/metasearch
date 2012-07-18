@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Query:</b>
+  <%= @google.query %>
+</p>
+
+<p>
+  <b>Query rank:</b>
+  <%= @google.query_rank %>
+</p>
+
+<p>
+  <b>Query number:</b>
+  <%= @google.query_number %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @google.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @google.description %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @google.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_google_path(@google) %> |
+<%= link_to 'Back', googles_path %>
