@@ -146,7 +146,7 @@ module ResultsHelper
 		accountKey = "bf3b6752f636dc5ef50052ec9cc0f835"
 		
 		# Specify number of results to be returned
-		num_results = 50
+		num_results = 95
 		
 		# IP address required by the API
 		ip = "86.43.163.178"
