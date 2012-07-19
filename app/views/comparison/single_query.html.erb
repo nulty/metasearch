@@ -1,0 +1,78 @@
+<h1>Comparison#single_query</h1>
+
+<%= params.inspect%>
+<p>Find me in app/views/comparison/single_query.html.erb</p>
+
+
+
+
+
+<div class="nav_menu">
+	<% @queries.each do |q| %>
+	<span><%= q %></span>
+	<% @db_names.each do |engine| %>
+	
+	<%=link_to engine, comparison_single_query_url(:query => q, :engine => engine) %>
+	
+	<%end%>
+	</br>
+	<%end%>
+</div>
+
+
+
+
+
+
+<table class="single_query_table">
+	<tr>
+		<th>Rank</th>
+		<th>Test</th>
+	</tr>
+<% @bing.each do |b|%>
+	<tr>
+		<td><%= truncate(b.url, :length => 50) %></td>
+		<td><%= b.query_rank%></td>
+	</tr>
+<% end %>
+</table>
+
+<table class="single_query_table">
+	<tr>
+		<th>Rank</th>
+		<th>Google</th>
+	</tr>
+<% @googleRes.each do |g|%>
+	<tr>
+		<td><%= truncate(g.url, :length => 50) %></td>
+		<td><%= g.query_rank%></td>
+	</tr>
+<% end %>
+</table>
+
+<div>
+<% @relevant.each do |e|%>
+<p><%= e %></p>
+<% end %>
+<div>
+
+<div>
+<h3>Relevant #</h3>
+<p><%= @count%></p>
+<div>
+
+<div>
+<h3>Precision</h3>
+<p><%= @precision%>%</p>
+<div>
+
+<div>
+<h3>Precision @ 10</h3>
+<p><%= @P_at_10%>%</p>
+<div>
+
+
+<div>
+<h3>Average Precision</h3>
+<p><%= @ave_precision%>%</p>
+<div>
