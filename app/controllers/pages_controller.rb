@@ -54,14 +54,16 @@ class PagesController < ApplicationController
 	
 	def aggregated
 		
-		bing_weight = 0.39
-		blekko_weight = 0.25
-		entire_weight = 0.29
+		
+		# weighting attached to each search engine based on the trial queries
+		bing_weight = 0.46
+		blekko_weight = 0.29
+		entire_weight = 0.28
 		
 		
 		
 		
-  	sessionid = "43c856b018bf6e536ec37b2edbdf9e16" #request.session[:session_id]
+  	sessionid = "rake_task" #request.session[:session_id]
   	
   	max = Result.where("session_id = ? ", sessionid).maximum("query_number")
   	

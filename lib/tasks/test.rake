@@ -1,11 +1,15 @@
-desc "Running search Queries for Result model"
+desc "Opening and mainpulating file contents"
 
-task :run_Result => :environment do
+task :filemanip => :environment do
 	
-		#require 'base64'		# used to authenticate API
-	require 'net/http'	# used to retrieve search results
-	require 'oj'				# used to convert json to ruby hash
-	require 'cgi'				# used to unescape HTML in results
-	require 'sanitize'	# used to remove HTML tags in results
 
-	File.open()
+	queries = File.open(Rails.root.join "lib/assets/queries").each_line do |line|
+	
+		puts line
+		puts "Thats a line!"
+		sleep 10
+	end
+	
+	
+	
+end

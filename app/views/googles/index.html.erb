@@ -13,6 +13,7 @@
     <th></th>
   </tr>
 
+  <%= paginate @googles%>
 <% @googles.each do |google| %>
   <tr>
     <td><%= google.query %></td>

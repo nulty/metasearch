@@ -6,7 +6,7 @@ class GooglesController < ApplicationController
   # GET /googles
   # GET /googles.json
   def index
-    @googles = Google.all
+    @googles = Google.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html # index.html.erb

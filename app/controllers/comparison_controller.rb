@@ -4,10 +4,10 @@ class ComparisonController < ApplicationController
   def single_query
   	
   	engine = params[:engine].nil? ? "Bing" : params[:engine]
-  	query = params[:query].nil? ? "dinosaurs" : params[:query]
+  	query = params[:query].nil? ? "obama family tree" : params[:query]
   	
   	
-  	@sess = "43c856b018bf6e536ec37b2edbdf9e16"
+  	@sess = "rake_task"
   	#query = "dinosaurs"
   	#db_name = "Bing"
   	@db_names = []
@@ -83,12 +83,12 @@ class ComparisonController < ApplicationController
 
   def summary
   	
-  	sess = "43c856b018bf6e536ec37b2edbdf9e16"
+  	sess = "rake_task"
   	
   	db_names = []
   	queries = []
   	
-  	Result.select(:query).where(:session_id => sess).uniq.each {|r| queries << r.query}
+  	Google.select(:query).uniq.each {|r| queries << r.query}
   	Result.select(:db_name).uniq.each {|r| db_names << r.db_name}
   	@bingP=[]
   	@blekkoP =[]
@@ -119,7 +119,7 @@ class ComparisonController < ApplicationController
 				bing_running_score += ((rel[1] / rel[2].to_f)*100).to_i
 			end
 			
-			@bing_ave_precision = (bing_running_score / @googleRes.size)
+			@bing_ave_precision = (bing_running_score / @googleRes.size)	## error divide by zero ##
 			@bingP << @bing_ave_precision
 			
 			###################################################

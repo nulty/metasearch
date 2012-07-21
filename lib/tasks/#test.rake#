@@ -1,9 +1,0 @@
-desc "Opening and mainpulating file contents"
-
-task :filemanip => :environment do
-	
-
-	File.open(Rails.root.join "")
-	
-	
-end
