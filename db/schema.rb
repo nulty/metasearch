@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717150154) do
+ActiveRecord::Schema.define(:version => 20120718200138) do
 
   create_table "googles", :force => true do |t|
     t.text     "query"
-    t.text     "query_rank"
+    t.integer  "query_rank"
     t.integer  "query_number"
     t.text     "title"
     t.text     "description"

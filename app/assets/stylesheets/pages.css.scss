@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 *{ margin:0; padding:0;}
-body{ font:100% normal Arial, Helvetica, sans-serif; background:#161712;}
+body{ font:100% normal Arial, Helvetica, sans-serif; background-color:#161712;}
 form,input,select,textarea{margin:0; padding:0; color:#000;}
 h1 {font-size: 0px;}
 
@@ -14,14 +14,9 @@ src: url('Ubuntu-L.ttf'),
      url('Ubuntu-L.eot'); /* IE9+ */
 }
 
-body {
 
-	 height: 300%;
- 	 min-height: 300%;
-
-}
 #wrapper {
-	background-color: red;
+	background-color: #f2f2f2;
 	margin-left: 10%;
 	margin-right: 10%;
 
@@ -109,9 +104,7 @@ $result_width: 360px;
 	float: left;
 	margin: 0 15px;
 	
-	
-	
-			table{
+		table{
 				background-color: #fff;
 				width: $result_width;
 				
@@ -141,8 +134,60 @@ $result_width: 360px;
 						}	
 					}
 			}
+	
+			
 
 }
+
+$agg_width: 900px;
+
+ table.aggregated{
+ 	 margin-left: auto;
+ 	 margin-right: auto;
+				background-color: #fff;
+				width: $agg_width;
+				
+					tr{
+					padding: 5em;
+						td {
+							
+						height: 9em;
+							background-color: #ccc;
+							padding: 3%;
+							max-width: $agg_width;
+							overflow: auto;
+								.resTitle p {
+						margin: 0em 0em 0.5em 0em;
+									height: 20%;
+									font-size: 1.5em;
+									
+								
+								}
+								
+								.resDesc {
+									
+									height: 50%;
+									font-size: 1em;
+								
+								}
+								
+								.score {
+									float:right;
+									display:block;
+									font-size: 0.8em;
+								
+								}
+								
+								.db_name {
+									float:right;
+									display:block;
+									font-size: 0.8em;
+								
+								}
+						}	
+					}
+			}
+	
 
  #footer {
  width: 800px;

@@ -1,0 +1,19 @@
+<h1>Aggregated</h1>
+
+	<%= paginate @agg %>
+	
+	<table class="aggregated">
+	<% @agg.each do |item| %>
+		<tr>
+			<td>
+				<div class="resTitle"><p><%= link_to item["title"], item["url"].to_s %></p></div>
+				<div class="resDesc"><%= truncate(item["description"], :length => @trunc) %></div>
+				<div class="resUrl"><%= truncate(item["url"],:length => 40 ) %></div>
+				<div class="score"><p><%= item[:score] %></p></div>
+				<div class="db_name"><p><%= item["db_name"] %></p></div>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	
+
