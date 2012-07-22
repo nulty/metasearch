@@ -146,10 +146,14 @@ class ResultsController < ApplicationController
 		request.session[:q_num]+=1
 			
 		respond_to do |format|
-			format.html { redirect_to searchresults_path }
+			if params[:searchType] == 'Seperate'				
+				format.html { redirect_to searchresults_path }
+				format.json { head :no_content }
+			else
+				format.html { redirect_to aggregated_path }
 				format.json { head :no_content }
 			end
 		end
-
+	end
   
 end

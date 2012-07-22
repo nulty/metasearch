@@ -1,8 +1,13 @@
-<h1>Web Search Results</h1>
-<p>You chose </p>
-
 <%= render 'search'%>
 
+	<div class="query-panel">
+	<ul>	
+		<% @queries.each do |q|%>
+			<li><%= link_to q.query, searchresults_path(:query=>q.query_number) %></li>
+		<% end %>	
+	</ul>
+	</div>
+	
 	<% if @blekko %>
 		<div id="blekkoDiv" class="result_div">
 			<%= render 'blekko.html.erb'%>

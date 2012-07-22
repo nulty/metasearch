@@ -1,6 +1,6 @@
 <%= form_tag(store_url) do %>
 	<%= text_field_tag 'query', nil, :placeholder => 'Search...'%>
-	<%= button_tag "Go!", 'data-disable-with' => "Please wait..."%>
+	<%= button_tag "Search!", 'data-disable-with' => "Please wait..."%>
 	<div>
 		<%= label_tag 'Seperate'%>
 		<%= radio_button_tag 'searchType', 'Seperate', true%>

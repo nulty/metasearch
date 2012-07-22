@@ -1,7 +1,16 @@
 <h1>Aggregated</h1>
 
+<%= render 'search'%>
+
 	<%= paginate @agg %>
 	
+	<div class="query-panel">
+	<ul>	
+		<% @queries.each do |q|%>
+			<li><%= link_to q.query, aggregated_path(:query=>q.query_number) %></li>
+		<% end %>	
+	</ul>
+	</div>
 	<table class="aggregated">
 	<% @agg.each do |item| %>
 		<tr>
