@@ -1,28 +1,22 @@
 <%= render 'search'%>
 
-	<div class="query-panel">
-	<ul>	
-		<% @queries.each do |q|%>
-			<li><%= link_to q.query, searchresults_path(:query=>q.query_number) %></li>
-		<% end %>	
-	</ul>
-	</div>
 	
-	<% if @blekko %>
+	<div class="result-container">
+	<% unless @blekko.empty? %>
 		<div id="blekkoDiv" class="result_div">
 			<%= render 'blekko.html.erb'%>
 		</div>
 	<% end %>
 	
-	<% if @entireweb %>
+	<% unless @entireweb.empty? %>
 		<div id="entireDiv" class="result_div">
 			<%= render 'entireweb.html.erb'%>
 		</div>
 	<% end %>
 	
-	<% if @bing %>
+	<% unless @bing.empty? %>
 		<div id="bingDiv" class="result_div">
 			<%= render 'bing.html.erb'%>
 		</div>
 	<% end %>
-
+</div>

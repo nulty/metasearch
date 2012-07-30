@@ -1,2 +1,0 @@
-class BlekkoController < ApplicationController  
-end

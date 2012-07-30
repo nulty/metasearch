@@ -1,37 +1,68 @@
+<div class="search-small">
+
+
+
+<%if @queries.size >= 1%>
+<div class="query-panel">
+	<ul>	
+	<li>Last 5 queries:</li>
+	
+		<% @queries.each do |q|%>
+			<li><%= link_to q.query, url_for(:query=>q.query_number) %></li>
+		<% end %>	
+	</ul>
+	</div>
+	<% end %>
+	
+	
+	<div class="result-style">
+	<ul>
+			<li>Results Style:</li>
+			<li><%= link_to "Seperate Results", searchresults_path(:query=> @query_number) %></li>
+			<li><%= link_to "Aggregated", aggregated_path(:query => @query_number) %></li>
+			<li><%= link_to "Clustered", cluster_path(:query => @query_number) %></li>
+	</ul>
+	</div>
+	
+	
+	<span class="small-logo"><%= link_to "MeatSearch", root_url, :class => "no-decoration"%></span>
 <%= form_tag(store_url) do %>
-	<%= text_field_tag 'query', nil, :placeholder => 'Search...'%>
-	<%= button_tag "Search!", 'data-disable-with' => "Please wait..."%>
-	<div>
+	<%= text_field_tag 'query', @query, :placeholder => 'Search...', :class => "small-search-field"%>
+	<%= button_tag "Search!", 'data-disable-with' => "Please wait...",  :class => "small-search-button" %>
+	<div class="small-search-type">
+	
 		<%= label_tag 'Seperate'%>
 		<%= radio_button_tag 'searchType', 'Seperate', true%>
 		
 		<%= label_tag 'Aggregated'%>
 		<%= radio_button_tag 'searchType', 'Aggregated'%>
-	</div>
+	</br>
 	
-	<%= label_tag 'entireweb', 'EntireWeb' %>
+		<%= label_tag 'entireweb', 'EntireWeb' %>
+		
+		<% if params[:entireweb].nil? %>
+			<%= check_box_tag 'entireweb', 'Entireweb', false  %>
+		<% else %>
+			<%= check_box_tag 'entireweb', 'Entireweb', true %>
+		<% end %>
+		
+		<%= label_tag 'bing', 'Bing' %>
+		
+		<% if params[:bing].nil? %>
+			<%= check_box_tag 'bing', 'Bing', false  %>
+		<% else %>
+			<%= check_box_tag 'bing', 'Bing', true %>
+		<% end %>
+		
+		<%= label_tag 'blekko', 'Blekko' %>
+		
+		<% if params[:blekko].nil? %>
+			<%= check_box_tag 'blekko', 'Blekko', false  %>
+		<% else %>
+			<%= check_box_tag 'blekko', 'Blekko', true %>
+		<% end %>
 	
-	<% if params[:entireweb].nil? %>
-		<%= check_box_tag 'entireweb', 'Entireweb', false  %>
-	<% else %>
-		<%= check_box_tag 'entireweb', 'Entireweb', true %>
-	<% end %>
-	
-	<%= label_tag 'bing', 'Bing' %>
-	
-	<% if params[:bing].nil? %>
-		<%= check_box_tag 'bing', 'Bing', false  %>
-	<% else %>
-		<%= check_box_tag 'bing', 'Bing', true %>
-	<% end %>
-	
-	<%= label_tag 'blekko', 'Blekko' %>
-	
-	<% if params[:blekko].nil? %>
-		<%= check_box_tag 'blekko', 'Blekko', false  %>
-	<% else %>
-		<%= check_box_tag 'blekko', 'Blekko', true %>
-	<% end %>
+</div>
 <% end %>
 	
-
+</div>

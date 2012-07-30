@@ -6,9 +6,9 @@
 	<% @blekko.each do |item| %>
 		<tr>
 			<td>
-				<div class="resTitle"><%= truncate(item.title) %></div>
-				<div class="resUrl"><%=link_to truncate(item.url), item.url %></div>
-				<div class="resDesc"><%= truncate(item.description, :length => @trunc) %></div>
+				<div class="resTitle"><%= link_to truncate(item.title, :length => 35), item.url %></div>
+				<div class="resDesc"><%= truncate(item.description, :length => 220) %></div>
+				<div class="resUrl"><%= truncate(item.url, :length => @trunc)%></div>
 			</td>
 		</tr>
 		<% end %>

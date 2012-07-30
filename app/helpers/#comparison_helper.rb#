@@ -43,6 +43,19 @@ module ComparisonHelper
 						# retrieves the results from each engine for each of the current query
 					agg_res = Result.where('session_id = ? and query =?', sess, query).order("score DESC")
 					
+					urls =[]
+					
+					# removes results with duplicate urls from the but leaves the result with the highest score
+					agg_res.delete_if do |item|
+						if urls.include? item[:url]
+							true
+						else
+							urls << item[:url]
+							false
+						end
+					end
+					
+					urls = nil
 					
 					# updating the setter for aggregated results ranking. Works because results are sorted by score.
 					agg_rank_count = 0
@@ -60,19 +73,7 @@ module ComparisonHelper
 					agg_count = 0
 					agg_res_ave_precision = 0
 					
-					urls =[]
 					
-					# removes results with duplicate urls from the but leaves the result with the highest score
-					agg_res.delete_if do |item|
-						if urls.include? item[:url]
-							true
-						else
-							urls << item[:url]
-							false
-						end
-					end
-					
-					urls = nil
 					
 					# compares aggregated results to google and retreives the relevant results
 					agg_res.each do |agg| 

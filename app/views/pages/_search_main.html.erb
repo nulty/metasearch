@@ -1,6 +1,21 @@
-<span  class="logo"><h1>MeatSearch</h1></span>
+<span class="logo"><h1>MeatSearch</h1></span>
 
 <%= form_tag(store_url) do %>
+
+
+<% if flash.any? %>
+    <div id="flash">
+      <h2><%= "There is " + pluralize(flash.count, "error") %> :</h2>
+
+      <ul>
+      <% flash.each do |msg| %>
+        <li><%= msg[1] %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
 	<%= text_field_tag 'query', nil, :placeholder => 'Search...', :class => 'searchField round'%>
 	<span class="buttonBox"><%= button_tag "Search", 'data-disable-with' => "Please wait...", :class => 'searchButton'%></span>
 	<div>

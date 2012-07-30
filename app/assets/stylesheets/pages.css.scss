@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 *{ margin:0; padding:0;}
-body{ font:100% normal Arial, Helvetica, sans-serif; background-color:#161712;}
+body{ font:100% normal Arial, Helvetica, sans-serif; background-color:#fff;}
 form,input,select,textarea{margin:0; padding:0; color:#000;}
 h1 {font-size: 0px;}
 
@@ -13,41 +13,79 @@ font-family: LogoFont;
 src: url('Ubuntu-L.ttf'),
      url('Ubuntu-L.eot'); /* IE9+ */
 }
-
-
 #wrapper {
-	background-color: #f2f2f2;
-	margin-left: 10%;
-	margin-right: 10%;
-
-}
-
+	 
+		 margin-left: 10%;
+		 margin-right: 10%;
+		 overflow: auto;
+		 background-color: #ffe;
+		 
+	 }
+.search-small{
+ 	 width: 75%;
+ 	 
+		margin: 3em auto 0 auto ;
+		
+ 	 overflow: none;
+ 	 height: 10em;
+ 	 
+ 	 .small-logo {
+ 	 
+ 	 	 font-family: LogoFont;
+ 	 	 font-size: 1.5em;
+ 	 
+ 	 }
+ 	 .small-search-field{
+ 	 
+ 	 	 width: 15em;
+ 	 	 font-size: 1.5em;
+ 	 	 border-style: solid;
+ 	 	 padding: 3px;
+ 	 
+ 	 }
+	 .small-search-type {
+	 	 margin: 20px;
+	 
+	 }
+	 .small-search-button {
+	 
+	 	 padding: 3px;
+	 	 font-size: 1em;
+	 
+	 }
+	 .query-panel {
+		 
+		 background-color: #fff;
+		 float: right;
+	 }
+ }
 .mainSearchDiv {
 
 	width: 40%;
-	background-color: #def;
+	height: 20em;
+	border: black solid 3px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 15em;
 	padding: 5em 10em;
-	
+	text-align: center;
 	
 	span.logo {
 		
 		margin-left: auto;
-		margin-right: auto;		
-		margin-top: auto;
-		margin-bottom: 2em;
+		margin-right: auto;	
+		margin-bottom: 3em;
 		display:block;
-		width: 20em;
-		text-align: center;
+		
+		
 		
 		h1 {
-		
-		width: auto;
-		display: inline;
-		font-family: LogoFont;
-		font-size: 5em;
-	}
+			
+			width: auto;
+			display: inline;
+			font-family: LogoFont;
+			font-size: 5em;
+		}
 		
 	}
 	
@@ -56,10 +94,9 @@ src: url('Ubuntu-L.ttf'),
 		margin-left: auto;
 		margin-right: auto;
 		display: block;
-		
-		
 	
 	}
+	
 	.searchField {
 		margin-left: auto;
 		margin-right: auto;
@@ -76,7 +113,6 @@ src: url('Ubuntu-L.ttf'),
 	.checkBox {
 	
 		font-size: 1.2em;
-		
 	
 	}
 	
@@ -97,100 +133,147 @@ src: url('Ubuntu-L.ttf'),
 	border-radius: 10px;
 }
  
+
 $result_width: 360px;
-	
-.result_div {
-	
-	float: left;
-	margin: 0 15px;
-	
-		table{
+.result-container {
+	.result_div {
+		float: left;
+		margin: 0 15px;
+			table{
 				background-color: #fff;
-				width: $result_width;
-				
 					tr{
-					
 						td {
-							
-						height: 9em;
-							background-color: #ccc;
+							height: 9em;
+							max-height: 9em;
+							background-color: #efe;
 							padding: 3%;
-							max-width: $result_width;
 							overflow: auto;
 								.resTitle {
-						
 									height: 20%;
-									font-size: 1.2em;
-									
-								
+									font-size: 1.2em;	
 								}
-								
 								.resDesc {
 									
-									height: 50%;
-									font-size: 0.8em;
-								
+									height: 60%;
+									font-size: 1em;
 								}
-						}	
+								
+								.resUrl {
+									color: #8d3;
+									height: 10%;
+									font-size: 0.8em;
+								}
+							}	
 					}
 			}
-	
-			
-
+	}
 }
 
 $agg_width: 900px;
 
- table.aggregated{
- 	 margin-left: auto;
- 	 margin-right: auto;
-				background-color: #fff;
-				width: $agg_width;
-				
-					tr{
-					padding: 5em;
-						td {
-							
-						height: 9em;
-							background-color: #ccc;
-							padding: 3%;
-							max-width: $agg_width;
-							overflow: auto;
-								.resTitle p {
-						margin: 0em 0em 0.5em 0em;
-									height: 20%;
-									font-size: 1.5em;
-									
-								
-								}
-								
-								.resDesc {
-									
-									height: 50%;
-									font-size: 1em;
-								
-								}
-								
-								.score {
-									float:right;
-									display:block;
-									font-size: 0.8em;
-								
-								}
-								
-								.db_name {
-									float:right;
-									display:block;
-									font-size: 0.8em;
-								
-								}
-						}	
-					}
-			}
+table.aggregated{
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff;
+	//width: $agg_width;
 	
+	tr{
+		padding: 5em;
+			td {
+			
+				height: 9em;
+				background-color: #ccc;
+				padding: 3%;
+				max-width: $agg_width;
+				overflow: auto;
+				
+				.resTitle p {
+					margin: 0em 0em 0.5em 0em;
+					height: 20%;
+					font-size: 1.5em;
+					
+					
+					}
+				
+				.resDesc {
+					height: 50%;
+					font-size: 1em;
+					}
+				
+				.score {
+					float:right;
+					display:block;
+					font-size: 0.8em;
+					}
+				
+				.db_name {
+					float:right;
+					display:block;
+					font-size: 0.8em;
+					}
+			}	
+	}
+}
+	
+li {
+	list-style-type: none;
+	}
 
- #footer {
- width: 800px;
- clear: left;
- 
- }
+.no-decoration {
+	color: #000;
+	text-decoration: none;
+	}
+
+.result-style {
+	float: right;
+	}
+			
+			$agg_width: 900px;
+
+			
+.cluster-labels {
+	float:left;
+	width: 250px;
+	padding-top: 50px;
+	}
+	
+.clustered {
+	float:left;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff;
+	//width: 600px;
+	
+		tr{
+			padding: 5em;
+			td {
+			height: 9em;
+			background-color: #ccc;
+			padding: 3%;
+			max-width: 1000px;
+			overflow: auto;
+				.resTitle p {
+					margin: 0em 0em 0.5em 0em;
+					height: 20%;
+					font-size: 1.5em;
+					}
+				
+				.resDesc {
+					height: 50%;
+					font-size: 1em;
+					}
+				
+				.score {
+					float:right;
+					display:block;
+					font-size: 0.8em;
+					}
+				
+				.db_name {
+					float:right;
+					display:block;
+					font-size: 0.8em;
+					}
+			}	
+		}
+}

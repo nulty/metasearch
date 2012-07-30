@@ -6,9 +6,9 @@
 	<% @bing.each do |item| %>
 		<tr>
 			<td>
-				<div class="resTitle"><%= truncate(item.title, :length => 35) %></div>
-				<div class="resUrl"><%=link_to truncate(item.url,:length => 40 ), item.url %></div>
-				<div class="resDesc"><%= truncate(item.description, :length => @trunc) %></div>
+				<div class="resTitle"><%= link_to truncate(item.title, :length => 35), item.url %></div>
+				<div class="resDesc"><%= item.description %></div>
+				<div class="resUrl"><%= truncate(item.url, :length => @trunc)%></div>
 			</td>
 		</tr>
 		<% end %>

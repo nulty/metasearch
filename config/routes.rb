@@ -1,5 +1,4 @@
 Metasearch::Application.routes.draw do
-  
 
   get "comparison/single_query"
 
@@ -13,40 +12,21 @@ Metasearch::Application.routes.draw do
   get "/googlesearch" => "googles#search", :as => :googlestore
   match "/googlesearch" => "googles#store", :via => [:get, :post], :as => :googlestore
   
-  post "/pages" => "results#store", :as => :store
+  #post "/pages" => "results#store", :as => :store
 
   resources :results
 
-
 	controller :pages do
-	  post '/pages' => 'results#store', :as => :store
-		get "/pages" => "pages#index"
-		get "pages/cluster" => :cluster, :as => :cluster
-		get "/searchresults" => "pages#results", :as => :searchresults#match '/pages' => 'pages#results'
+	  post '/' => 'results#store', :as => :store
+		get "/" => "pages#index"
+		get "/cluster" => :cluster, :as => :cluster
+		get "/searchresults" => "pages#results", :as => :searchresults
 		get "/aggregated" => "pages#aggregated"
 		
   end
-  	
-	controller :bing do
-		#get '/bing' #=> 'bing#results', :as => :bing
-		#match '/bing' => redirect("/bing")
-		get '/bing' => 'bing#results'#:results, :as => :bing
-		post '/bingresults' => 'bing#results', :as => :bing_results
-		#match '/bing' => redirect("/bing")
-	end
-
-	controller :blekko do
-		get "blekko/results"
-		#post 'blekko#results' => :results
-		match '/blekko' => 'blekko#results', :as => :blekko
-	end
-	
-	controller :entireweb do
-		get "entireweb/results"
-		#post 'pages#search' => :results
-		match '/entireweb' => 'entireweb#results', :as => :entireweb
-	end
-
+  
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -9,24 +9,37 @@ module ResultsHelper
 	
 	def getResults(par_bing, par_ent, par_blek, query)
 		array = Array.new(3)
+		threads = []
 		
-		if par_bing
-  		array[0] = bing_search(query)
-  	end
-
-		if par_ent
-			array[1] = entireweb_search(query)
-		end
-
-		if par_blek
-			array[2] = blekko_search(query)
-		end
-
+		 
+				
+			if par_bing
+				threads << Thread.new {
+					array[0] = bing_search(query)
+					}
+			end
+	
+			if par_ent
+				threads << Thread.new{
+					array[1] = entireweb_search(query)
+				}
+			end
+	
+			if par_blek
+				threads << Thread.new {
+					array[2] = blekko_search(query)
+				}
+			end
+			
+			threads.each { |aThread|  aThread.join }
+			
 		array
 	end
 	
 	def bing_search(query)
 			
+		weight = 0.06
+		
 		# Specify number of results to be returned
 		num_results = 50
 			
@@ -62,6 +75,7 @@ module ResultsHelper
 			
 			# Set unused object to nil
 			#hash = nil
+			array_size = array.size
 	
 			# cycle through the results transfering only the parts we need into the new datastructure
 			array.each do |hash|
@@ -70,6 +84,8 @@ module ResultsHelper
 				resHash[:results][i][:description] = hash["Description"]
 				resHash[:results][i][:url] = hash["Url"]
 				resHash[:results][i][:rank] = i+1
+				raw_score = (1 - (((i+1)-1.0) / array_size))
+				resHash[:results][i][:score] =(raw_score + (raw_score*weight)).round(4)
 				i+=1
 			end
 		end
@@ -83,6 +99,7 @@ module ResultsHelper
 	
 	def blekko_search(query)
 			
+		weight = 0.05
 			
 		 #User account search key
 		accountKey = 'f4c8acf3'            
@@ -117,19 +134,19 @@ module ResultsHelper
 		i = 0
 			
 		# cycle through the results transfering only the parts we need into the new datastructure
-		#unless array.nil?
-			begin
+		array_size = array.size
+
 			array.each do |hash|
 				resHash[:results] << Hash.new
 				resHash[:results][i][:title] = CGI.unescapeHTML(Sanitize.clean(hash["url_title"].nil? ? "--No Title Available--" : hash["url_title"]))
 				resHash[:results][i][:description] = CGI.unescapeHTML(Sanitize.clean(hash["snippet"].nil? ? "--No Description Available--" : hash["snippet"] ))
 				resHash[:results][i][:url] = hash["url"]
 				resHash[:results][i][:rank] = i+1
+				raw_score = (1 - (((i+1)-1.0) / array_size))
+				resHash[:results][i][:score] = (raw_score + (raw_score*weight)).round(4)
 				i+=1
 			end
-		rescue
-			return	
-		end
+		
 
 	# Set unused object to nil
 		array = nil
@@ -141,7 +158,7 @@ module ResultsHelper
 	
 	def entireweb_search(query)
 		
-		
+		weight = 0.0
 		 #User account search key
 		accountKey = "bf3b6752f636dc5ef50052ec9cc0f835"
 		
@@ -177,6 +194,9 @@ module ResultsHelper
 		# counter for addressing array position and assigning rank to each result
 		i = 0
 		
+		
+		array_size = array.size
+		
 		# cycle through the results transfering only the parts we need into the new datastructure
 		array.each do |hash|
 			resHash[:results] << Hash.new
@@ -184,6 +204,8 @@ module ResultsHelper
 			resHash[:results][i][:description] = hash["snippet"].nil? ? "--No Description Available--" : hash["snippet"]
 			resHash[:results][i][:url] = hash["url"]
 			resHash[:results][i][:rank] = i+1
+			raw_score = (1 - (((i+1)-1.0) / array_size))
+			resHash[:results][i][:score] =(raw_score + (raw_score*weight)).round(4)
 			i+=1
 		end
 			

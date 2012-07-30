@@ -89,69 +89,75 @@ class ResultsController < ApplicationController
   
   def store
    	 
-   	# id query count is not set in session variable set it to 1
-		request.session[:q_num] ||= 1
-		
-		# put session variables into local variables
-		query_number = request.session[:q_num]
-		sessionid = request.session[:session_id]
-		
-		# parse the query by encoding it for URL
-		query = query_preprocesser(params[:query]) # this is in a helper
-				
-		#resArray = [[{:engine => "bing, :results => [{:Description => "abc", :Title => "def"}, {:Description => "ghi", :Title => "jkl"}]}, {etc},{etc} ],[{:eng...}]]
-				 
-		# localise the search engine parameters
-		bing_p 		= params[:bing]
-		entire_p	= params[:entireweb]
-		blekko_p	= params[:blekko]
-		
-		# method for collecting results of search from multiple engines - In ResultsHelper
-		resArray = getResults(bing_p, entire_p, blekko_p, query) # Also a helper method returning an array of up to 3 arrays
-		
-		#results = []
-		
-		resArray.each do |engine|
-			unless engine.nil?
-				db_name = engine[:engine]
-				Result.transaction do
-				engine[:results].each do |result|
-					if result[:title].empty?
-						result[:title] = result[:description][0..15]
-					end
-					if result[:description].empty?
-						result[:description] = result[:title]
-					end
+  	if params[:bing].nil? and params[:blekko].nil? and params[:entireweb].nil? 
+			flash[:notice] = "You must choose at least 1 engine!"
+		end
+		if params[:query].empty?
+			flash[:notice2] = "You must supply a search term!"
+		end
+  	
+		if flash.nil?
+			# id query count is not set in session variable set it to 1
+			request.session[:q_num] ||= 1
+			
+			# put session variables into local variables
+			query_number = request.session[:q_num]
+			sessionid = request.session[:session_id]
+			
+			# parse the query by encoding it for URL
+			query = query_preprocesser(params[:query]) # this is in a helper
 					
-					res = Result.new(
-						:session_id => sessionid, 
-						:db_name => db_name,
-						:query_number => query_number,
-						:query => params[:query],
-						:query_rank => result[:rank],
-						:description => result[:description],
-						:title => result[:title],
-						:url => result[:url] )
+			#resArray = [[{:engine => "bing, :results => [{:Description => "abc", :Title => "def"}, {:Description => "ghi", :Title => "jkl"}]}, {etc},{etc} ],[{:eng...}]]
+					 
+			# localise the search engine parameters
+			bing_p 		= params[:bing]
+			entire_p	= params[:entireweb]
+			blekko_p	= params[:blekko]
+			
+			# method for collecting results of search from multiple engines - In ResultsHelper
+			resArray = getResults(bing_p, entire_p, blekko_p, query) # Also a helper method returning an array of up to 3 arrays
+		
+			
+			resArray.each do |engine|
+				unless engine.nil?
+					db_name = engine[:engine]
+					Result.transaction do
+					engine[:results].each do |result|
 						
-					res.save!
+						res = Result.new(
+							:session_id => sessionid, 
+							:db_name => db_name,
+							:query_number => query_number,
+							:query => params[:query],
+							:query_rank => result[:rank],
+							:description => result[:description],
+							:title => result[:title],
+							:url => result[:url],
+							:score => result[:score])
+							
+						res.save!
+						end
 					end
 				end
 			end
-		end
-		
-		# method available to ActiveRecord-import
-		#Result.import results
-		
-		# increase the search count for the session
-		request.session[:q_num]+=1
 			
+			# increase the search count for the session
+			request.session[:q_num]+=1
+				
+		end	
+			
+		
 		respond_to do |format|
-			if params[:searchType] == 'Seperate'				
-				format.html { redirect_to searchresults_path }
-				format.json { head :no_content }
+			unless flash.empty?   
+				format.html {redirect_to root_path} 
 			else
-				format.html { redirect_to aggregated_path }
-				format.json { head :no_content }
+				if params[:searchType] == 'Seperate'				
+					format.html { redirect_to searchresults_path }
+					format.json { head :no_content }
+				else
+					format.html { redirect_to aggregated_path }
+					format.json { head :no_content }
+				end
 			end
 		end
 	end
