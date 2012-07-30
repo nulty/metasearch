@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '1.9.3' 
 
 gem 'rails', '3.2.6'
 
@@ -12,7 +13,7 @@ gem 'kaminari'																						# Pagination gem
 #gem 'sqlite3'
 gem 'pg'
 #gem 'activerecord-import', ">= 0.2.0"
-gem 'tf_idf'
+#gem 'tf_idf'
 
 group :development, :test do
   
