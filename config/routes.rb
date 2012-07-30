@@ -1,5 +1,8 @@
 Metasearch::Application.routes.draw do
 
+	get "/input" => "surveys#input"
+  resources :surveys 
+
   get "comparison/single_query"
 
   get "comparison/summary"

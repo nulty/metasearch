@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120722154319) do
+ActiveRecord::Schema.define(:version => 20120730124635) do
 
   create_table "googles", :force => true do |t|
     t.text     "query"
@@ -36,6 +36,20 @@ ActiveRecord::Schema.define(:version => 20120722154319) do
     t.datetime "updated_at",                                 :null => false
     t.integer  "query_number"
     t.decimal  "score",        :precision => 8, :scale => 5
+  end
+
+  create_table "surveys", :force => true do |t|
+    t.integer  "norm_eng"
+    t.integer  "meta_better"
+    t.integer  "agg_non"
+    t.integer  "clust_non"
+    t.integer  "interface"
+    t.integer  "result_pres"
+    t.integer  "speed"
+    t.boolean  "make_default"
+    t.text     "add_info"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

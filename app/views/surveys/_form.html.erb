@@ -1,0 +1,53 @@
+<%= form_for(@survey) do |f| %>
+  <% if @survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% @survey.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :norm_eng %><br />
+    <%= f.number_field :norm_eng %>
+  </div>
+  <div class="field">
+    <%= f.label :meta_better %><br />
+    <%= f.number_field :meta_better %>
+  </div>
+  <div class="field">
+    <%= f.label :agg_non %><br />
+    <%= f.number_field :agg_non %>
+  </div>
+  <div class="field">
+    <%= f.label :clust_non %><br />
+    <%= f.number_field :clust_non %>
+  </div>
+  <div class="field">
+    <%= f.label :interface %><br />
+    <%= f.number_field :interface %>
+  </div>
+  <div class="field">
+    <%= f.label :result_pres %><br />
+    <%= f.number_field :result_pres %>
+  </div>
+  <div class="field">
+    <%= f.label :speed %><br />
+    <%= f.number_field :speed %>
+  </div>
+  <div class="field">
+    <%= f.label :make_default %><br />
+    <%= f.check_box :make_default %>
+  </div>
+  <div class="field">
+    <%= f.label :add_info %><br />
+    <%= f.text_area :add_info %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

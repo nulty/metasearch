@@ -9,11 +9,13 @@ gem "oj", "~> 1.2.12"
 
 gem 'sanitize-rails'																			# Removes HTML
 gem 'kaminari'																						# Pagination gem 
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'pg'
 #gem 'activerecord-import', ">= 0.2.0"
 gem 'tf_idf'
 
 group :development, :test do
+  
   gem 'rspec-rails'																				# Test framework
   gem 'factory_girl_rails'																# Factory fixtures
 end
@@ -24,7 +26,6 @@ group :test do
   gem 'guard-rspec'																				# continuous testing
   gem 'launchy'																						# browser launcher
 end
-
 
 
 

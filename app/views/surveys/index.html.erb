@@ -1,0 +1,39 @@
+<h1>Listing surveys</h1>
+
+<table>
+  <tr>
+    <th>Norm eng</th>
+    <th>Meta better</th>
+    <th>Agg non</th>
+    <th>Clust non</th>
+    <th>Interface</th>
+    <th>Result pres</th>
+    <th>Speed</th>
+    <th>Make default</th>
+    <th>Add info</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @surveys.each do |survey| %>
+  <tr>
+    <td><%= survey.norm_eng %></td>
+    <td><%= survey.meta_better %></td>
+    <td><%= survey.agg_non %></td>
+    <td><%= survey.clust_non %></td>
+    <td><%= survey.interface %></td>
+    <td><%= survey.result_pres %></td>
+    <td><%= survey.speed %></td>
+    <td><%= survey.make_default %></td>
+    <td><%= survey.add_info %></td>
+    <td><%= link_to 'Show', survey %></td>
+    <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
+    <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Survey', new_survey_path %>

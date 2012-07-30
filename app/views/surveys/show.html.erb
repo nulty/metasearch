@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Norm eng:</b>
+  <%= @survey.norm_eng %>
+</p>
+
+<p>
+  <b>Meta better:</b>
+  <%= @survey.meta_better %>
+</p>
+
+<p>
+  <b>Agg non:</b>
+  <%= @survey.agg_non %>
+</p>
+
+<p>
+  <b>Clust non:</b>
+  <%= @survey.clust_non %>
+</p>
+
+<p>
+  <b>Interface:</b>
+  <%= @survey.interface %>
+</p>
+
+<p>
+  <b>Result pres:</b>
+  <%= @survey.result_pres %>
+</p>
+
+<p>
+  <b>Speed:</b>
+  <%= @survey.speed %>
+</p>
+
+<p>
+  <b>Make default:</b>
+  <%= @survey.make_default %>
+</p>
+
+<p>
+  <b>Add info:</b>
+  <%= @survey.add_info %>
+</p>
+
+
+<%= link_to 'Edit', edit_survey_path(@survey) %> |
+<%= link_to 'Back', surveys_path %>
