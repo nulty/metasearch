@@ -21,8 +21,10 @@ class SurveysController < ApplicationController
   def new
     @survey = Survey.new
 
+    
+    
     respond_to do |format|
-      format.html # new.html.erb
+      format.html {redirect_to "input" }
       format.json { render json: @survey }
     end
   end
@@ -36,10 +38,10 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.save
-        format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
+        format.html { redirect_to :thanks, notice: 'Survey was successfully created.' }
         format.json { render json: @survey, status: :created, location: @survey }
       else
-        format.html { render action: "new" }
+        format.html { render action: "input" }
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
     end
@@ -75,6 +77,9 @@ class SurveysController < ApplicationController
   	
   	@survey = Survey.new
   	
+  end
+  
+  def thanks
   	
   	
   end

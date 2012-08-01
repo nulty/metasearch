@@ -1,6 +1,6 @@
 <h1>MeatSearch feedback form</h1>
 
-<%= form_for(@survey) do |f| %>
+<%= form_for @survey, :url => input_path do |f| %>
   <% if @survey.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>

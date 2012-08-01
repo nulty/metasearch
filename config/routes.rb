@@ -1,8 +1,13 @@
 Metasearch::Application.routes.draw do
 
 	get "/input" => "surveys#input"
-  resources :surveys 
-
+	get "/thanks" => "surveys#thanks"
+	
+  resources :surveys
+		#match "/input" => "surveys#create", :as => :input
+		#match "/input" => "surveys#new", :as => :input
+		#match "/surveys" => "surveys#input"
+	match "/input" => "surveys#create", :via => :post	
   get "comparison/single_query"
 
   get "comparison/summary"
