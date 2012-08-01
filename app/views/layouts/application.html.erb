@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @title %></title>
+  <title>MeatSearch | <%= @title %></title>
   
   <%= stylesheet_link_tag    "pages", :media => "all" %>
-  <% if @engine_result_count == 1 %>
+		<% if @engine_result_count == 1 %>
   <%= stylesheet_link_tag    "one_col", :media => "all" %>
   <% elsif @engine_result_count == 2%>
-  <%= stylesheet_link_tag    "two_col", :media => "all" %>
+		<%= stylesheet_link_tag    "two_col", :media => "all" %>
   <% elsif @engine_result_count == 3%>
-  <%= stylesheet_link_tag    "thr_col", :media => "all" %>
+		<%= stylesheet_link_tag    "thr_col", :media => "all" %>
   <% end %>
   <%= stylesheet_link_tag    "results", :media => "all" %>
   <%= stylesheet_link_tag    "comparison", :media => "all" %>
   <%= stylesheet_link_tag    "googles", :media => "all" %>
+  <%= stylesheet_link_tag    "surveys", :media => "all" %>
+  <%= stylesheet_link_tag    "scaffolds", :media => "all" %>
   
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

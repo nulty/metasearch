@@ -7,9 +7,6 @@ Metasearch::Application.routes.draw do
 
   get "comparison/summary"
 
-  get "single_query/summary"
-
-  #get "comparison/single_query(/:engine/:query)"
   resources :googles
 
   get "/googlesearch" => "googles#search", :as => :googlestore
@@ -22,7 +19,7 @@ Metasearch::Application.routes.draw do
 	controller :pages do
 	  post '/' => 'results#store', :as => :store
 		get "/" => "pages#index"
-		get "/cluster" => :cluster, :as => :cluster
+		get "/cluster" => 'pages#cluster', :as => :cluster
 		get "/searchresults" => "pages#results", :as => :searchresults
 		get "/aggregated" => "pages#aggregated"
 		

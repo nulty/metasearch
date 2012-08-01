@@ -3,9 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 *{ margin:0; padding:0;}
-body{ font:100% normal Arial, Helvetica, sans-serif; background-color:#fff;}
+body{ font:100% normal Arial, Helvetica, sans-serif; background-color: #f25;}
 form,input,select,textarea{margin:0; padding:0; color:#000;}
-h1 {font-size: 0px;}
+//h1 {font-size: 0px;}
+
 
 @font-face
 {
@@ -14,34 +15,32 @@ src: url('Ubuntu-L.ttf'),
      url('Ubuntu-L.eot'); /* IE9+ */
 }
 #wrapper {
-	 
-		 margin-left: 10%;
-		 margin-right: 10%;
 		 overflow: auto;
-		 background-color: #ffe;
-		 
 	 }
 .search-small{
- 	 width: 75%;
+	 
+	
+ 	width: 75%;
+ 	background-image: url('gradientfromtop.gif');
+ 	background-repeat:repeat-x;
+	margin: 0 auto 0 auto ;
+		padding: 2em 15em 0 15em;
+ 	overflow: none;
+ 	height: 10em;
  	 
-		margin: 3em auto 0 auto ;
-		
- 	 overflow: none;
- 	 height: 10em;
+ 	.small-logo {
  	 
- 	 .small-logo {
+ 		 font-family: LogoFont;
+ 		 font-size: 1.5em;
  	 
- 	 	 font-family: LogoFont;
- 	 	 font-size: 1.5em;
- 	 
- 	 }
- 	 .small-search-field{
- 	 
- 	 	 width: 15em;
- 	 	 font-size: 1.5em;
- 	 	 border-style: solid;
- 	 	 padding: 3px;
- 	 
+ 	}
+ 	.small-search-field{
+ 
+		width: 15em;
+		font-size: 1.5em;
+		border-style: solid;
+		padding: 3px;
+ 
  	 }
 	 .small-search-type {
 	 	 margin: 20px;
@@ -54,27 +53,31 @@ src: url('Ubuntu-L.ttf'),
 	 
 	 }
 	 .query-panel {
-		 
-		 background-color: #fff;
 		 float: right;
+		 margin-right: 2em;
+	 }
+	 
+	 .result-style {
+	 	 float: right;
+	 	 margin-right: 2em;
 	 }
  }
 .mainSearchDiv {
-
-	width: 40%;
+background-color: #fff;
+	width: 35%;
 	height: 20em;
 	border: black solid 3px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 15em;
-	padding: 5em 10em;
+	margin-top: 10em;
+	padding: 5em 7em;
 	text-align: center;
 	
 	span.logo {
 		
 		margin-left: auto;
 		margin-right: auto;	
-		margin-bottom: 3em;
+		margin-bottom: 4em;
 		display:block;
 		
 		
@@ -102,8 +105,7 @@ src: url('Ubuntu-L.ttf'),
 		margin-right: auto;
 		margin-top: auto;
 		margin-bottom: 1em;
-		display: block;
-		padding: 5px;
+		padding: 7px;
 		width: 20em;
 		background-color: #fee;
 		font-size: 2em;
@@ -115,10 +117,14 @@ src: url('Ubuntu-L.ttf'),
 		font-size: 1.2em;
 	
 	}
+	.search-type {
 	
+		padding: 10px;
+	}
 	.searchButton {
 		margin-left: auto;
 		margin-right: auto;
+		margin-bottom:1em;
 		display: block;
 		width: 8em;
 		padding: 0.5em;
@@ -133,9 +139,12 @@ src: url('Ubuntu-L.ttf'),
 	border-radius: 10px;
 }
  
-
+$td_color: #ddd;
+$url_color: #444;
 $result_width: 360px;
 .result-container {
+	margin:0 auto;
+	width: 80%;
 	.result_div {
 		float: left;
 		margin: 0 15px;
@@ -145,7 +154,7 @@ $result_width: 360px;
 						td {
 							height: 9em;
 							max-height: 9em;
-							background-color: #efe;
+							background-color: $td_color;
 							padding: 3%;
 							overflow: auto;
 								.resTitle {
@@ -159,7 +168,7 @@ $result_width: 360px;
 								}
 								
 								.resUrl {
-									color: #8d3;
+									color: $url_color;
 									height: 10%;
 									font-size: 0.8em;
 								}
@@ -169,20 +178,20 @@ $result_width: 360px;
 	}
 }
 
-$agg_width: 900px;
+$agg_width: 1000px;
 
-table.aggregated{
+.aggregated{
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #fff;
-	//width: $agg_width;
+	width: $agg_width;
 	
 	tr{
 		padding: 5em;
 			td {
 			
-				height: 9em;
-				background-color: #ccc;
+				height: 6em;
+				background-color: $td_color;
 				padding: 3%;
 				max-width: $agg_width;
 				overflow: auto;
@@ -199,17 +208,23 @@ table.aggregated{
 					height: 50%;
 					font-size: 1em;
 					}
+				.resUrl {
+					height: 10%;
+					font-size: 0.8em;
+					}
 				
 				.score {
 					float:right;
 					display:block;
 					font-size: 0.8em;
+					padding: 4px;
 					}
 				
 				.db_name {
 					float:right;
 					display:block;
 					font-size: 0.8em;
+					padding: 4px;
 					}
 			}	
 	}
@@ -228,52 +243,74 @@ li {
 	float: right;
 	}
 			
-			$agg_width: 900px;
-
-			
-.cluster-labels {
-	float:left;
-	width: 250px;
-	padding-top: 50px;
-	}
+.background {
 	
-.clustered {
-	float:left;
 	margin-left: auto;
+	width: 90%;
+	height:1000px;
 	margin-right: auto;
-	background-color: #fff;
-	//width: 600px;
-	
-		tr{
-			padding: 5em;
-			td {
-			height: 9em;
-			background-color: #ccc;
-			padding: 3%;
-			max-width: 1000px;
-			overflow: auto;
-				.resTitle p {
-					margin: 0em 0em 0.5em 0em;
-					height: 20%;
-					font-size: 1.5em;
-					}
-				
-				.resDesc {
-					height: 50%;
-					font-size: 1em;
-					}
-				
-				.score {
-					float:right;
-					display:block;
-					font-size: 0.8em;
-					}
-				
-				.db_name {
-					float:right;
-					display:block;
-					font-size: 0.8em;
-					}
-			}	
+	overflow: none;
+		.cluster-labels {
+			background-color: #ded;
+			float:left;
+			width: 15%;
+			padding: 0.8em;
+			margin-top: 1.5em;
+				p.cluster-labels-hdr {
+					font-weight: bold;
+					font-size: 18px;
+					text-align:center;
+					margin-bottom:1.5em;
+				}
+				li {
+					padding: 3px;
+				}
+			}
+			
+		.clustered {
+			float:right;
+			background-color: #fff;
+			width: 90%;
+			
+				tr{
+					padding: 5em;
+					td {
+					height: 7em;
+					background-color: $td_color;
+					padding: 3%;
+					max-width: 90%;
+					overflow: auto;
+						.resTitle {
+							margin: 0em 0em 0.5em 0em;
+							line-height: 1.6em;
+							font-size: 1.6em;
+							}
+						
+						.resDesc {
+							height: 50%;
+							font-size: 1em;
+							}
+						
+						.resUrl {
+							height: 10%;
+							font-size: 0.8em;
+						}
+						.score {
+							float:right;
+							display:block;
+							font-size: 0.8em;
+							padding: 4px;
+							}
+						
+						.db_name {
+							float:right;
+							display:block;
+							font-size: 0.8em;
+							padding: 4px;
+							}
+					}	
+				}
 		}
+
+
 }

@@ -1,6 +1,5 @@
 class SurveysController < ApplicationController
-  # GET /surveys
-  # GET /surveys.json
+  
   def index
     @surveys = Survey.all
 
@@ -10,8 +9,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  # GET /surveys/1
-  # GET /surveys/1.json
   def show
     @survey = Survey.find(params[:id])
 
@@ -21,8 +18,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  # GET /surveys/new
-  # GET /surveys/new.json
   def new
     @survey = Survey.new
 
@@ -32,13 +27,10 @@ class SurveysController < ApplicationController
     end
   end
 
-  # GET /surveys/1/edit
   def edit
     @survey = Survey.find(params[:id])
   end
 
-  # POST /surveys
-  # POST /surveys.json
   def create
     @survey = Survey.new(params[:survey])
 
@@ -53,8 +45,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  # PUT /surveys/1
-  # PUT /surveys/1.json
   def update
     @survey = Survey.find(params[:id])
 

@@ -38,7 +38,7 @@ module ResultsHelper
 	
 	def bing_search(query)
 			
-		weight = 0.06
+		weight = 0.07194439651946019
 		
 		# Specify number of results to be returned
 		num_results = 50
@@ -80,8 +80,8 @@ module ResultsHelper
 			# cycle through the results transfering only the parts we need into the new datastructure
 			array.each do |hash|
 				resHash[:results] << Hash.new
-				resHash[:results][i][:title] = hash["Title"]
-				resHash[:results][i][:description] = hash["Description"]
+				resHash[:results][i][:title] = hash["Title"].nil? ? "--No Title Available--" : hash["Title"]
+				resHash[:results][i][:description] = hash["Description"].empty? ? "--No Description Available--" : hash["Description"]
 				resHash[:results][i][:url] = hash["Url"]
 				resHash[:results][i][:rank] = i+1
 				raw_score = (1 - (((i+1)-1.0) / array_size))
@@ -91,7 +91,7 @@ module ResultsHelper
 		end
 
 		# Set unused object to nil
-		#array = nil
+		array = nil
 
 		# return the new object
 		resHash
@@ -99,7 +99,7 @@ module ResultsHelper
 	
 	def blekko_search(query)
 			
-		weight = 0.05
+		weight = 0.059700029899288215
 			
 		 #User account search key
 		accountKey = 'f4c8acf3'            
@@ -158,29 +158,29 @@ module ResultsHelper
 	
 	def entireweb_search(query)
 		
-		weight = 0.0
+		weight = 0.038843882872345976
+		
 		 #User account search key
 		accountKey = "bf3b6752f636dc5ef50052ec9cc0f835"
 		
-		# Specify number of results to be returned
+		# Specify number of results to be returned, **engine seems to return 5 extra for some reason....
 		num_results = 95
 		
 		# IP address required by the API
-		ip = "86.43.163.178"
+		ip = "86.43.167.156"#"86.43.163.178"
 				
 		# URI for the API with variable interpolated
 		uri = URI("http://www.entireweb.com/xmlquery?pz=#{accountKey}&ip=#{ip}&q=#{query}&n=#{num_results}&format=json")
-				
+		begin
 		# Start the HTTP request to the API
 		Net::HTTP.start(uri.host, uri.port,	:use_ssl => uri.scheme == 'https') do |http|
 			req = Net::HTTP::Get.new uri.request_uri
 			response = http.request(req)  
 			@output = response.body
-			#output
 		end
-		
-		# Use oj to convert the json to a ruby Hash
-		hash = Oj.load(@output)
+
+			# Use oj to convert the json to a ruby Hash
+			hash = Oj.load(@output)
 		
 		# use only the part of the hash we need
 		array = hash["hits"]
@@ -214,7 +214,11 @@ module ResultsHelper
 		
 		# return the new object
 		resHash	
-	
+	rescue Exception => e
+		
+		flash[:engineerr] = "Entireweb has ceased to work"
+		return nil
+	end
 
-end
+	end
 end

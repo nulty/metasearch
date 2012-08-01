@@ -1,21 +1,21 @@
-<h1>Aggregated</h1>
-
 <%= render 'search'%>
 
-<%= paginate @agg %>
 
-	<table class="aggregated">
+
+<div class="aggregated">
+<%= paginate @agg%>	<table >
 	<% @agg.each do |item| %>
 		<tr>
 			<td>
 				<div class="resTitle"><p><%= link_to truncate(item["title"], :length => 55), item["url"] %></p></div>
 				<div class="resDesc"><%= truncate(item["description"], :length => @trunc) %></div>
-				<div class="resUrl"><%= truncate(item["url"],:length => 60 ) %></div>
 				<div class="score"><p><%= item[:score] %></p></div>
 				<div class="db_name"><p><%= item["db_name"] %></p></div>
+				<div class="resUrl"><%= truncate(item["url"],:length => 60 ) %></div>
 			</td>
 		</tr>
 		<% end %>
 	</table>
-	
+	<%= paginate @agg%>
+</div>	
 

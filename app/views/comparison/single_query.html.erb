@@ -3,22 +3,22 @@
 
 
 <div class="nav_menu">
-	<%=select_tag options_for_select(@queries)%>
-	<table>
+	<div class="background round">
+		<table>
 		<% @queries.each do |q| %>
 			<tr>
-			<td><span><%= q %></span></td>
-				<% @db_names.each do |engine| %>
-					<td><%=link_to engine, comparison_single_query_url(:query => q, :engine => engine) %></td>
-				<%end%>
-		</tr>
+				<td><span><%= q %></span></td>
+			<% @db_names.each do |engine| %>
+				<td><%=link_to engine, comparison_single_query_url(:query => q, :engine => engine) %></td>
+			<%end%>
+			</tr>
 		<%end%>
-	</table>
+		</table>
+	</div>
 </div>
 
-
 <div class="stats-div">
-	
+	<h2><%= params[:engine]%> - "<%= params[:query]%>"</h2>
 	
 	<div>
 		<h3>Recall</h3>
@@ -27,12 +27,12 @@
 	
 	<div>
 		<h3>Precision</h3>
-		<p><%= @precision%></p>
+		<p><%= @precision%>%</p>
 	</div>
 	
 	<div>
 		<h3>Precision @ 10</h3>
-		<p><%= @P_at_10%></p>
+		<p><%= @P_at_10%>%</p>
 	</div>
 	
 	
@@ -40,39 +40,53 @@
 		<h3>Average Precision</h3>
 		<p><%= @ave_precision%></p>
 	</div>
+	
 </div>
 
 
-
-<table class="single_query_table">
-	<tr>
-		<th><%= params[:engine] %></th>
-		<th>Rank</th>
-	</tr>
-<% @engine.each do |b|%>
-	<tr>
-		<td><%= truncate(b.url, :length => 50) %></td>
-		<td><%= b.agg_rank || b.query_rank%></td>
-	</tr>
-<% end %>
-</table>
-
-
-<table class="single_query_table">
-	<tr>
-		<th>Google</th>
-		<th>Rank</th>
-	</tr>
-<% @googleRes.each do |g|%>
-	<tr>
-		<td><%= truncate(g.url, :length => 50) %></td>
-		<td><%= g.query_rank%></td>
-	</tr>
-<% end %>
-</table>
-
-<div>
-		<% @relevant.each do |e|%>
-		<p><%= e[0..2] %></p>
+<div class="single_query_div">
+<h2>All results for 'engine' and Google</h2>
+	<table class="single_query_table">
+		<tr>
+			<th><%= params[:engine] || "Bing" %></th>
+			<th>Rank</th>
+		</tr>
+		<% @engine.each do |b|%>
+		<tr>
+			<td><%= truncate(b.url, :length => 50) %></td>
+			<td><%= b.agg_rank || b.query_rank%></td>
+		</tr>
 	<% end %>
-	</div>
+	</table>
+	
+	<table class="single_query_table">
+		<tr>
+			<th>Google</th>
+			<th>Rank</th>
+		</tr>
+		<% @googleRes.each do |g|%>
+		<tr>
+			<td><%= truncate(g.url, :length => 50) %></td>
+			<td><%= g.query_rank%></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
+
+<div class="single_query_table">
+<h2>Relevant engine docs</h2>
+<table class="single_query_table">
+	<thead>
+		<th>Url</th>
+		<th>Eng Rank</th>
+		<th>G-rank</th>
+	<thead>
+<% @relevant.each do |e|%>
+	<tr>
+		<td><%= e[0] %></td>
+		<td><%= e[1] %></td>
+		<td><%= e[2] %></td>
+	</tr>
+<% end %></div>
+
+

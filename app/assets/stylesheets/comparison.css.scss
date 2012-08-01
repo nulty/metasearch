@@ -1,24 +1,53 @@
 // Place all the styles related to the comparison controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+	
+body {
+	background-image: url('gradientfromtop.gif');	
+	background-repeat:repeat-x;}
 
 
-.single_query_table {
 
+.single_query_div {
 
+	clear: left;
+	h2 {
+		margin-bottom: 1em;
+		margin: 0 auto;}
+	.single_query_table {
 
+		float: left;}
 }
 
 .nav_menu {
 
-float:left;
-font-size: 14px; 
-	
-
+	float:left;
+	font-size: 14px;
+	height: auto;
+	padding-bottom: 4em;
+	width: 650px;
+	overflow: auto;
 }
 
 .stats-div {
 
-	float:right;
+	float:left;
+	display: block;
 
+	h2 {
+		margin-bottom: 1em;}
+}
+
+.map-div {
+
+	font-size: 2em;
+	line-height: 2.2em;
+	width:60%;
+	margin: 0 auto;
+	table {
+		margin: 0 auto;
+		td{
+			font-size: 1em;
+			width:auto;}
+	}
 }

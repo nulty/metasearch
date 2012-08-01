@@ -46,7 +46,7 @@ Metasearch::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( search.js application.css comparison.css googles.css one_col.css two_col.css thr_col.css surveys.css results.css pages.css )
+  config.assets.precompile += %w( search.js application.css comparison.css googles.css one_col.css two_col.css thr_col.css surveys.css results.css pages.css surveys.css scaffolds.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

@@ -3,6 +3,7 @@ class ComparisonController < ApplicationController
   
   def single_query
   	
+  	@title = "Individual Query Analysis"
   	# initializes the engine and query to Bing and first query if 
   	#		the parameters are empty
   	
@@ -36,6 +37,7 @@ class ComparisonController < ApplicationController
 					false
 				end
 			end
+			
 			# assigns rank to aggregated results in line with score
 			count_rank=0
 			@engine.each do |e|
@@ -70,20 +72,20 @@ class ComparisonController < ApplicationController
 			end
   	end
   	
-  	@precision = ((rel_count / @engine.length.to_f))
-  	@recall = ((rel_count / @googleRes.length.to_f))
+  	@precision = ((rel_count / @engine.length.to_f)*100)
+  	@recall = ((rel_count / @googleRes.length.to_f)*100)
   	
   	# how many of the top ten engine results are relevant (in Google results) 
   	top_10_rel = 0
   	@engine[0..9].each do |ten|
-  		@relevant.each do |rel|
-  			if rel[0] == ten[:url]
+  		@googleRes.each do |rel|
+  			if rel[:url] == ten[:url]
   				top_10_rel+=1
 				end
   		end
   	end
   	
-  	@P_at_10 = ((top_10_rel/10.0))
+  	@P_at_10 = ((top_10_rel/10.0)*100)
   	
   	
   	precision_at =0
@@ -92,7 +94,7 @@ class ComparisonController < ApplicationController
   	end
   	
   	# relevant retrieved / relevant
-  	@ave_precision = (precision_at / @googleRes.size)
+  	@ave_precision = ((precision_at / @googleRes.size)*100).round(2)
    
   end
 
@@ -101,7 +103,9 @@ class ComparisonController < ApplicationController
   
   def summary
   	
-		# group for all the agg results at line 187
+  	@title = "Mean Average Precision across engines"
+		
+  	# group for all the agg results at line 187
 		aggregated_with_scores = []
 		
   	sess = "rake_task"
@@ -138,7 +142,7 @@ class ComparisonController < ApplicationController
 			accumulated_averages += ave
 		end
 		
-		@bing_map= accumulated_averages / queries.count
+		@bing_map= ((accumulated_averages / queries.count)*100).round(2)
 		
   	####################################################
   	
@@ -147,7 +151,7 @@ class ComparisonController < ApplicationController
 			accumulated_averages += ave
 		end
 		
-		@blekko_map= accumulated_averages / queries.count
+		@blekko_map= ((accumulated_averages / queries.count)*100).round(2)
 		
 		####################################################
 		
@@ -156,7 +160,7 @@ class ComparisonController < ApplicationController
 			accumulated_averages += ave
 		end
 		
-		@aggregated_map= accumulated_averages / queries.count
+		@aggregated_map= ((accumulated_averages / queries.count)*100).round(2)
 		
 		####################################################
 		accumulated_averages=0
@@ -164,7 +168,7 @@ class ComparisonController < ApplicationController
 			accumulated_averages += ave
 		end
 		
-		@entire_map= accumulated_averages / queries.count
+		@entire_map= ((accumulated_averages / queries.count)*100).round(2)
 		
   end
   

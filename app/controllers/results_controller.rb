@@ -25,8 +25,6 @@ class ResultsController < ApplicationController
     end
   end
 
-  # GET /results/new
-  # GET /results/new.json
   def new
   	
   	@result = Result.new#(:session_id => "e08c13a99f21a91520fcc393e0860c94", :db_name => "Bing", :query => "Whats the story", :query_rank => 1, :title => "The Title", :description => "descript", :url => "www.google.ie",:query_number => 1)
@@ -37,13 +35,10 @@ class ResultsController < ApplicationController
     end
   end
 
-  # GET /results/1/edit
   def edit
     @result = Result.find(params[:id])
   end
 
-  # POST /results
-  # POST /results.json
   def create
     @result = Result.new(params[:result])
     
@@ -59,8 +54,6 @@ class ResultsController < ApplicationController
     end
   end
 
-  # PUT /results/1
-  # PUT /results/1.json
   def update
     @result = Result.find(params[:id])
 
@@ -75,8 +68,6 @@ class ResultsController < ApplicationController
     end
   end
 
-  # DELETE /results/1
-  # DELETE /results/1.json
   def destroy
     @result = Result.find(params[:id])
     @result.destroy
@@ -90,13 +81,13 @@ class ResultsController < ApplicationController
   def store
    	 
   	if params[:bing].nil? and params[:blekko].nil? and params[:entireweb].nil? 
-			flash[:notice] = "You must choose at least 1 engine!"
+			flash[:engine] = "You must choose at least 1 engine!"
 		end
 		if params[:query].empty?
-			flash[:notice2] = "You must supply a search term!"
+			flash[:term] = "You must supply a search term!"
 		end
   	
-		if flash.nil?
+		if flash.empty?
 			# id query count is not set in session variable set it to 1
 			request.session[:q_num] ||= 1
 			
@@ -122,21 +113,21 @@ class ResultsController < ApplicationController
 				unless engine.nil?
 					db_name = engine[:engine]
 					Result.transaction do
-					engine[:results].each do |result|
-						
-						res = Result.new(
-							:session_id => sessionid, 
-							:db_name => db_name,
-							:query_number => query_number,
-							:query => params[:query],
-							:query_rank => result[:rank],
-							:description => result[:description],
-							:title => result[:title],
-							:url => result[:url],
-							:score => result[:score])
+						engine[:results].each do |result|
 							
-						res.save!
-						end
+							res = Result.new(
+								:session_id => sessionid, 
+								:db_name => db_name,
+								:query_number => query_number,
+								:query => params[:query],
+								:query_rank => result[:rank],
+								:description => result[:description],
+								:title => result[:title],
+								:url => result[:url],
+								:score => result[:score])
+								
+								res.save!
+							end
 					end
 				end
 			end

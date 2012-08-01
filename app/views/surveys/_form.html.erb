@@ -1,53 +1,88 @@
+<h1>MeatSearch feedback form</h1>
+
 <%= form_for(@survey) do |f| %>
   <% if @survey.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
 
       <ul>
-      <% @survey.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <% @survey.errors.each do |key, value| %>
+        <li><%= value %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :norm_eng %><br />
-    <%= f.number_field :norm_eng %>
+    <h3><%= f.label "Q1) What is your usual search engine of choice?" %></h3><br />
+    <%= f.label "Google" %>
+    <%= f.radio_button :norm_eng, 1  %>
+    <%= f.label "Yahoo" %>
+    <%= f.radio_button :norm_eng, 2  %>
+    <%= f.label "Bing" %>
+    <%= f.radio_button :norm_eng, 3  %>
+    <%= f.label "Entireweb" %>
+    <%= f.radio_button :norm_eng, 4  %>
+    <%= f.label "Blekko" %>
+    <%= f.radio_button :norm_eng, 5  %>
+    <%= f.label "other" %>
+    <%= f.radio_button :norm_eng, 6  %>
   </div>
   <div class="field">
-    <%= f.label :meta_better %><br />
-    <%= f.number_field :meta_better %>
+    <h3><%= f.label "Q2) Do you think MeatSearch is better than your usual Search engine? (1-7)" %></h3><br />
+    <%= f.label "Yes" %>
+    <%= f.radio_button :meta_better, 1  %>
+    <%= f.label "No" %>
+    <%= f.radio_button :meta_better, 2  %>
+    
   </div>
   <div class="field">
-    <%= f.label :agg_non %><br />
-    <%= f.number_field :agg_non %>
+    <h3><%= f.label "Q3) Do you prefer the aggregated results to the separate results display?" %></h3><br />
+    <%= f.label "Yes" %>
+    <%= f.radio_button :agg_non, 1  %>
+    <%= f.label "No" %>
+    <%= f.radio_button :agg_non, 2  %>
   </div>
   <div class="field">
-    <%= f.label :clust_non %><br />
-    <%= f.number_field :clust_non %>
+    <h3><%= f.label "Q4) Do you prefer the clustered results to the separate results display?" %></h3><br />
+    <%= f.label "Yes" %>
+    <%= f.radio_button :clust_non, 1  %>
+    <%= f.label "No" %>
+    <%= f.radio_button :clust_non, 2  %>
   </div>
   <div class="field">
-    <%= f.label :interface %><br />
-    <%= f.number_field :interface %>
+    <h3><%= f.label "Q5) Is the user interface easy to use?" %></h3><br />
+    <%= f.label "Yes" %>
+    <%= f.radio_button :interface, 1  %>
+    <%= f.label "No" %>
+    <%= f.radio_button :interface, 2  %>
   </div>
   <div class="field">
-    <%= f.label :result_pres %><br />
-    <%= f.number_field :result_pres %>
+    <h3><%= f.label "Q6) Do you like how the results are presented?" %></h3><br />
+    <%= f.label "Yes" %>
+    <%= f.radio_button :result_pres, 1  %>
+    <%= f.label "No" %>
+    <%= f.radio_button :result_pres, 2  %>
   </div>
   <div class="field">
-    <%= f.label :speed %><br />
-    <%= f.number_field :speed %>
+    <h3><%= f.label "Q7) Are the various aspects of the search engine fast enough?" %></h3><br />
+    <%= f.label "Yes" %>
+    <%= f.radio_button :speed, 1  %>
+    <%= f.label "No" %>
+    <%= f.radio_button :speed, 2  %>
   </div>
   <div class="field">
-    <%= f.label :make_default %><br />
-    <%= f.check_box :make_default %>
+    <h3><%= f.label "Q8) Would you consider making MeatSearch your default search engine?" %></h3><br />
+    <%= f.label "Yes" %>
+    <%= f.radio_button :make_default, 1  %>
+    <%= f.label "No" %>
+    <%= f.radio_button :make_default, 2  %>
   </div>
   <div class="field">
-    <%= f.label :add_info %><br />
-    <%= f.text_area :add_info %>
+    <h3><%= f.label "Q9) Is there any additional issues, concerns or suggestions you would like to share?" %></h3><br />
+    <%= f.text_area :add_info, :size => "40x10"%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", :class => "submit-button" %>
   </div>
 <% end %>

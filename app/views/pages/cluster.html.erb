@@ -1,28 +1,34 @@
-<h1>Pages#cluster</h1>
-<%= render 'search'%>
 
-<div class="cluster-labels">
-	<% @clusters.each do |cluster| %>
-	
-	<p><%= link_to "#{cluster[0].join(" ")} (#{cluster[1].count})", cluster_path(:label=>cluster[0].join(" "), :query_number => @query_number)%></p>
-	
-	<% end %>
-</div>
-	
-<%= paginate @results %>
+<%= render 'search'%>
+<div class="background">
+	<div class="cluster-labels">
+	<p class="cluster-labels-hdr">Clusters:</p>
+		<ul>
+		<% @clusters.each do |cluster| %>
+			<li><%= link_to "#{cluster[0].join(" ")} (#{cluster[1].count})", cluster_path(:label=>cluster[0].join(" "), :query_number => @query_number)%></li>
+		<% end %>
+		</ul>
+	</div>
+		
 	<div class="result-container">
 		<div class="clustered">
-	<table>
-	<% @results.each do |item| %>
-		<tr>
-			<td>
-				<div class="resTitle"><%= link_to truncate(item.title, :length => 35), item.url %></div>
-				<div class="resDesc"><%= truncate(item.description, :length => 220) %></div>
-				<div class="resUrl"><%= truncate(item.url, :length => 50)%></div>
-			</td>
-		</tr>
-		<% end %>
-	</table>
-	</div>	
+		<%= paginate @results %>
+			<table>
+			<% @results.each do |item| %>
+				<tr>
+					<td>
+						<div class="resTitle"><%= link_to item.title, item.url %></div>
+						<div class="resDesc"><%= item.description %></div>
+						<div class="score"><p><%= item[:score] %></p></div>
+						<div class="db_name"><p><%= item["db_name"] %></p></div>
+						<div class="resUrl"><%= item.url%></div>
+					</td>
+				</tr>
+			<% end %>
+			</table>
+		<%= paginate @results %>
+		</div>	
+	</div>
+	
 </div>
-<%= @clusters_count%>
+

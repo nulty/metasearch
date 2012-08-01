@@ -4,13 +4,18 @@ class PagesController < ApplicationController
 	include PagesHelper
 	
 	def index
-		request.session[:session_id] = "rake_task"
+		@title = "Home"
+		
+		#request.session[:session_id] = "rake_task"
   		
   end
 
   def cluster
   	
-  	sessionid = "rake_task"#request.session[:session_id]
+  	@title = "Clustered Results"
+  	
+  	#sessionid = "rake_task"#
+  	sessionid = request.session[:session_id]
   	
 		@query ||= params[:query].nil? ? Result.select(:query).where(:session_id => sessionid).last.query : Result.select(:query).where(:query_number => params[:query]).first.query 
 		
@@ -56,7 +61,7 @@ class PagesController < ApplicationController
 		
 		# add pluralized / singularized query terms to end of stopwords
 		@results.first.query.split.each {|word_q| file << word_q.pluralize; file << word_q.singularize}
-		file << " "
+		
 		
 		doc_collection =[]
 		
@@ -191,13 +196,16 @@ class PagesController < ApplicationController
   
   def results
   	
-  	request.session[:session_id] = "rake_task"#"3feeec33b4f6ebabcef4fc237e26fc81"
+  	@title = "Seperate Results"
+  	
+  	#request.session[:session_id] = "rake_task"#"3feeec33b4f6ebabcef4fc237e26fc81"
   	
   	# session id variable for returning appropriate results
   	sessionid = request.session[:session_id]
   	
-  	@query ||= params[:query].nil? ? Result.select(:query).where(:session_id => sessionid).last.query : Result.select(:query).where(:query_number => params[:query]).first.query
-  	
+  	if request.session[:q_num]
+			@query ||= params[:query].nil? ? Result.select(:query).where(:session_id => sessionid).last.query : Result.select(:query).where(:query_number => params[:query]).last.query
+		end
   	
   	
   	
@@ -234,12 +242,16 @@ class PagesController < ApplicationController
 	
 	def aggregated
 		
-		@query ||= params[:query].nil? ? Result.select(:query).where(:session_id => sess).last.query : Result.select(:query).where(:query_number => params[:query]).first.query
 		
-		request.session[:session_id] = "rake_task"#"3feeec33b4f6ebabcef4fc237e26fc81"
+		
+		#request.session[:session_id] = "rake_task"#"3feeec33b4f6ebabcef4fc237e26fc81"
 				
 		# session_id for the test queries
   	sessionid =  request.session[:session_id]
+  	
+  	if request.session[:q_num]
+			@query ||= params[:query].nil? ? Result.select(:query).where(:session_id => sessionid).last.query : Result.select(:query).where(:query_number => params[:query], :session_id => sessionid).first.query
+		end
   	
   	if params[:query].nil?
   		@query_num = Result.where("session_id = ? ", sessionid).maximum("query_number")
