@@ -8,7 +8,7 @@ class Survey < ActiveRecord::Base
   validates :interface, :presence => {:message => "Q5) must be answered!"}
   validates :result_pres, :presence => {:message => "Q6) must be answered!"}
   validates :speed, :presence => {:message => "Q7) must be answered!"}
-  validates :make_default, :presence => {:message => "Q8) must be answered!"}
+  #validates :make_default, :presence => {:message => "Q8) must be answered!"}
 
   
 end
