@@ -198,7 +198,7 @@ class PagesController < ApplicationController
   	
   	@title = "Seperate Results"
   	
-  	#request.session[:session_id] = "rake_task"#"3feeec33b4f6ebabcef4fc237e26fc81"
+  	request.session[:session_id] = "rake_task"#"3feeec33b4f6ebabcef4fc237e26fc81"
   	
   	# session id variable for returning appropriate results
   	sessionid = request.session[:session_id]

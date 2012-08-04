@@ -144,33 +144,34 @@ $url_color: #444;
 $result_width: 360px;
 .result-container {
 	margin:0 auto;
-	width: 80%;
+	width: 90%;
 	.result_div {
 		float: left;
-		margin: 0 15px;
+		margin: 0 10px;
 			table{
 				background-color: #fff;
 					tr{
+						height: 100%;
 						td {
-							height: 9em;
-							max-height: 9em;
+							width: 100%;
+							vertical-align:text-top;
+							height: 10em;
+							max-height: 10em;
 							background-color: $td_color;
 							padding: 3%;
 							overflow: auto;
-								.resTitle {
+								.resTitle {          
+									
 									height: 20%;
 									font-size: 1.2em;	
 								}
-								.resDesc {
-									
-									height: 60%;
-									font-size: 1em;
-								}
+								
 								
 								.resUrl {
-									color: $url_color;
 									height: 10%;
+									color: $url_color;
 									font-size: 0.8em;
+									vertical-align: text-bottom;
 								}
 							}	
 					}
@@ -267,50 +268,52 @@ li {
 				}
 			}
 			
-		.clustered {
-			float:right;
-			background-color: #fff;
-			width: 90%;
-			
-				tr{
-					padding: 5em;
-					td {
-					height: 7em;
-					background-color: $td_color;
-					padding: 3%;
-					max-width: 90%;
-					overflow: auto;
-						.resTitle {
-							margin: 0em 0em 0.5em 0em;
-							line-height: 1.6em;
-							font-size: 1.6em;
-							}
-						
-						.resDesc {
-							height: 50%;
-							font-size: 1em;
-							}
-						
-						.resUrl {
-							height: 10%;
-							font-size: 0.8em;
-						}
-						.score {
-							float:right;
-							display:block;
-							font-size: 0.8em;
-							padding: 4px;
-							}
-						
-						.db_name {
-							float:right;
-							display:block;
-							font-size: 0.8em;
-							padding: 4px;
-							}
-					}	
+//.results-container{
+.clustered {
+	float:right;
+	background-color: #fff;
+	width: 85%;
+	
+		tr{
+			padding: 5em;
+			td {
+			height: 7em;
+			background-color: $td_color;
+			padding: 3%;
+			overflow: auto;
+				.resTitle {
+					margin: 0em 0em 0.5em 0em;
+					line-height: 1.6em;
+					font-size: 1.6em;
+					}
+				
+				.resDesc {
+					height: 50%;
+					font-size: 1em;
+					}
+				
+				.resUrl {
+					height: 10%;
+					font-size: 0.8em;
 				}
+				.score {
+					float:right;
+					display:block;
+					font-size: 0.8em;
+					padding: 4px;
+					}
+				
+				.db_name {
+					float:right;
+					display:block;
+					font-size: 0.8em;
+					padding: 4px;
+					}
+			}	
 		}
+}
+//}		
 
 
 }
+
